@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp">
+
+    <ImageView
+        android:id="@+id/ivFlag"
+        android:layout_width="42dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/flag"
+        android:transitionName="@string/transition_ivFlag"
+        app:layout_constraintBottom_toBottomOf="@id/mobile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mobile" />
+
+    <TextView
+        android:id="@+id/tvCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:padding="4dp"
+        android:text="+91"
+        android:textColor="#0E0E0E"
+        android:textSize="16sp"
+        android:transitionName="@string/transition_tvCode"
+        app:layout_constraintBottom_toBottomOf="@id/ivFlag"
+        app:layout_constraintStart_toEndOf="@id/ivFlag"
+        app:layout_constraintTop_toTopOf="@id/ivFlag" />
+
+
+
+        <EditText
+            android:id="@+id/mobile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvCode"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text=""
+            android:textSize="@dimen/text_large" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

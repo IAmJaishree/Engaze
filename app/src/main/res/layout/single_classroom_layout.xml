@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/class_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/class_single_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/classroom_profile_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/class_single_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/class_single_name" />
+
+    <ImageView
+        android:id="@+id/class_single_registered_as"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Registered As"
+        android:src="@drawable/ic_student"
+        app:layout_constraintBottom_toBottomOf="@+id/class_single_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/class_single_name" />
+
+    <TextView
+        android:id="@+id/class_single_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="classname"
+        android:textColor="#333"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/class_single_registered_as"
+        app:layout_constraintStart_toEndOf="@id/class_single_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/class_single_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:maxLines="1"
+        android:text="@string/status"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/class_single_registered_as"
+        app:layout_constraintStart_toStartOf="@+id/class_single_name"
+        app:layout_constraintTop_toBottomOf="@id/class_single_name" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="16dp"
+        android:background="#ddd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/class_single_name"
+        app:layout_constraintTop_toBottomOf="@+id/class_single_status" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

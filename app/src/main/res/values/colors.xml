@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#30ccac</color>
+    <color name="colorPrimaryDark">#333A42</color>
+
+    <color name="colorSecondary">#ff714c</color>
+
+    <!-- Dark Text Color for Light Background -->
+    <color name="textDarkPrimary">#DE000000</color> <!--DE for %87 opacity-->
+    <color name="textDarkSecondary">#8A000000</color> <!--8A for %54 opacity-->
+    <!--61 for %38 opacity-->
+
+    <!-- White Text Color for Dark Background -->
+    <!--%100 opacity-->
+    <!--B2 for %70 opacity-->
+    <!--80 for %50 opacity-->
+    <!--4C for %30 opacity-->
+
+
+    <!-- Others -->
+
+
+    <color name="colorGreenLight2">#60b246</color>
+
+
+    <!-- dots inactive colors -->
+
+    <!-- dots active colors -->
+
+
+    <color name="grayForIconsAndSmallText">#828288</color>
+
+    <color name="colorGrayLight">#d8d8d8</color>
+    <color name="colorGrayVeryLight">#edf1f4</color>
+
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="my_command_color">#ffecb3</color>
+    <color name="my_command_result_color">#e3f2fd</color>
+    <color name="other_message_color">#fafafa</color>
+
+    <color name="my_message_color">#69f0ae</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
+
+</resources>

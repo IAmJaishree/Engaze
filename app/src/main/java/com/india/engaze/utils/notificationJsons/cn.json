@@ -1,0 +1,7 @@
+{
+  "object": "{\"user_id\":37,\"driver_id\":null,\"ride_id\":77,\"city\":\"Room no 206 Sri Ram Plaza, Bank More, Dhanbad, Jharkhand 826001, India\",\"cancelled_by\":\"user\"}",
+  "key": "4",
+  "is_to_show": "1",
+  "message": "{\"title\":\"Ride cancelled\",\"message\":\"Your ride has been cancelled\"}",
+  "isDebug": "0"
+}

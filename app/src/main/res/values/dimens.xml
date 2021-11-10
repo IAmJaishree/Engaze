@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <dimen name="text_medium">12sp</dimen>
+    <dimen name="text_large">14sp</dimen>
+
+
+</resources>

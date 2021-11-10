@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/pending_request"
+        android:title="Pending Request" />
+
+    <item
+        android:id="@+id/setting"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/members"
+        android:title="Members" />
+
+    <item
+        android:id="@+id/marks"
+        android:title="Marks" />
+
+    <item
+        android:id="@+id/slide"
+        android:title="Slide" />
+
+    <item
+        android:id="@+id/examination"
+        android:title="Examination" />
+
+    <item
+        android:id="@+id/assignment"
+        android:title="Assignment" />
+
+    <item
+        android:id="@+id/new_assignment"
+        android:title="New Assignment" />
+
+    <item
+        android:id="@+id/leave"
+        android:title="Leave Group" />
+</menu>

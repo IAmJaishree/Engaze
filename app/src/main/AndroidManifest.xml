@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.india.engaze">
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        android:minSdkVersion="30" />
+
+
+    <application
+        android:name="com.india.engaze.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+
+
+        <service
+            android:name=".screens.slide.MyUploadingService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="com.btp.me.classroom.slide.MyDownloadingService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name="com.india.engaze.screens.Splash.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.india.engaze.screens.Authentication.PhoneInput.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.india.engaze.screens.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.india.engaze.screens.JoinClass"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.btp.me.classroom.slide.SlideActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.india.engaze.screens.PublicChatActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhone"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.india.engaze.screens.Authentication.OtpActivity.OtpActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+
+
+
+    </application>
+
+</manifest>

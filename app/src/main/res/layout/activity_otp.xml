@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:id="@+id/llphone"
+        android:orientation="vertical"
+        android:paddingTop="80dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="20dp"
+            android:id="@+id/greetTextOtp"
+            android:hint="sdfsdfdsf"
+            android:text="Enter the 4-digit\ncode sent to you at\n+918770947080"
+            android:textColor="#262626"
+            android:textColorHint="#DADBDF"
+            android:textSize="30sp" />
+
+        <com.goodiebag.pinview.Pinview
+            android:id="@+id/pinview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cursorVisible="true"
+            app:forceKeyboard="true"
+            android:layout_marginTop="32sp"
+            app:hint="0"
+            app:inputType="number"
+            app:password="false"
+            app:pinHeight="60dp"
+            app:pinLength="6"
+            app:pinWidth="48dp"
+            app:splitWidth="16dp" />
+
+    </LinearLayout>
+
+
+
+    <com.github.jorgecastilloprz.FABProgressCircle
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabProgress"
+        app:reusable="true"
+        android:padding="8dp"
+        app:arcColor="@color/black"
+        app:finalIcon="@drawable/ic_done"
+        app:arcWidth="3dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_arrow_forward" />
+
+
+    </com.github.jorgecastilloprz.FABProgressCircle>
+
+
+    <ImageView
+        android:id="@+id/ivback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:src="@drawable/ic_arrow_back"
+        android:transitionName="@string/transition_arrow" />
+
+
+
+
+    <Button
+        android:id="@+id/resend_otp_btn"
+        android:layout_width="140dp"
+        android:layout_height="51dp"
+        android:background="@drawable/white_rectangle_border_gray"
+        android:paddingLeft="16dp"
+        android:layout_margin="20dp"
+        android:paddingRight="16dp"
+        android:layout_gravity="bottom"
+        android:text="Resend OTP"
+        android:textColor="@color/textDarkPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+</FrameLayout>
