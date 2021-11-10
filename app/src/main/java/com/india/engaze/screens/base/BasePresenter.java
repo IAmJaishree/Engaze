@@ -2,6 +2,8 @@ package com.india.engaze.screens.base;
 
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.india.engaze.repository.Firebase.FireBaseRepository;
 import com.india.engaze.repository.session.ISessionManager;
 
@@ -24,6 +26,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     private final CompositeDisposable mCompositeDisposable;
     private final ISessionManager sessionManager;
     private final FireBaseRepository fireBaseRepository;
+
 
     @Inject
     public BasePresenter(
@@ -51,5 +54,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     public FireBaseRepository getFireBaseRepo() {
         return fireBaseRepository;
     }
+
+
 
 }

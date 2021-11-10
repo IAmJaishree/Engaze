@@ -35,15 +35,15 @@ class MyDownloadingService : MyBaseTaskService() {
         if (ACTION_DOWNLOAD == intent.action) {
             // Get the path to download from the intent
             val downloadPath = intent.getStringExtra(EXTRA_DOWNLOAD_PATH)
-            Log.d("chetan", "Downloading path $downloadPath")
+            Log.d("Engaze", "Downloading path $downloadPath")
 
 //            val bundle = intent.getBundleExtra(EXTRA_FILE_PATH)
 
             val fileName = intent.extras?.get(EXTRA_FILE_PATH) as File               // Unsafe use of a nullable receiver of type Bundle?
-            Log.d("chetan", "file Path $fileName")
+            Log.d("Engaze", "file Path $fileName")
 
 //            val filename = intent.getStringExtra(EXTRA_FILE_PATH) as File
-//            Log.d("chetan","file Paht $filename")
+//            Log.d("Engaze","file Paht $filename")
 
 
             downloadFromPath(downloadPath, fileName)

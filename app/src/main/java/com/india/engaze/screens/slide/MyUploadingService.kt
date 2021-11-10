@@ -102,10 +102,10 @@ class MyUploadingService : MyBaseTaskService() {
         val databaseReference = FirebaseDatabase.getInstance().getReference(databasePath)
         databaseReference.updateChildren(data).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.d("chetan", "Successfully uploaded")
+                Log.d("Engaze", "Successfully uploaded")
                 //              Toast.makeText(this, "Successfully uploaded", Toast.LENGTH_LONG).show()
             } else {
-                Log.d("chetan", "failure listener mRootRef")
+                Log.d("Engaze", "failure listener mRootRef")
                 //            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
             }
         }

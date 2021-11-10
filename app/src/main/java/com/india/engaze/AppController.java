@@ -1,12 +1,11 @@
 package com.india.engaze;
 
 import android.app.Application;
-import android.content.ContentResolver;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.CountDownTimer;
 import android.os.StrictMode;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.india.engaze.di.component.ApplicationComponent;
 import com.india.engaze.di.component.DaggerApplicationComponent;
 import com.india.engaze.di.module.ApplicationModule;
@@ -30,9 +29,8 @@ public class AppController extends Application {
 
     private static AppController mInstance;
 
+    private FirebaseUser firebaseUser;
 
-    MediaPlayer player;
-    boolean isSoundEnabled = false;
 
 
     @Override
@@ -42,11 +40,10 @@ public class AppController extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
 
+        FirebaseApp.initializeApp(this);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
-
         mApplicationComponent.inject(this);
-
         init();
     }
 
@@ -61,8 +58,6 @@ public class AppController extends Application {
             return;
         }
         LeakCanary.install(this);
-
-
     }
 
 
@@ -75,29 +70,9 @@ public class AppController extends Application {
         return mApplicationComponent;
     }
 
-    CountDownTimer countDownSound;
-
-    public void setPlayer() {
-        final Uri alarmSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                + "://" + getApplicationContext().getPackageName() + "/raw/buzzer_alarm");
-        this.player = MediaPlayer.create(getApplicationContext(), alarmSound);
-        this.player.setLooping(true);
-        this.player.start();
-        isSoundEnabled = true;
-    }
-
-    public void disableSound() {
-        Timber.e("wenbt to disable sound");
-        if (player != null) {
-            Timber.e(this.player.toString());
-            Timber.e("player disabled");
-            player.setLooping(false);
-            player.stop();
-        }
-    }
-
 
     public void logout() {
+        FirebaseAuth.getInstance().signOut();
         mSessionManager.setToken(null);
         mSessionManager.removeRide(-1);
         mSessionManager.setIsLoggedIn(false);
@@ -109,5 +84,14 @@ public class AppController extends Application {
             fireBaseRepository = new FireBaseRepository();
         }
         return fireBaseRepository;
+    }
+
+    public FirebaseUser getFirebaseUser(){
+
+        if(firebaseUser==null){
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        }
+
+        return firebaseUser;
     }
 }

@@ -1,11 +1,10 @@
-package com.btp.me.classroom.adapter
+package com.india.engaze.screens.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.btp.me.classroom.Class.ChatMessage
@@ -171,7 +170,7 @@ class ChatAdapter(private val list: ArrayList<ChatMessage>) : RecyclerView.Adapt
     }
 
     companion object {
-        private const val TAG = "chetan"
+        private const val TAG = "Engaze"
 
     }
 }

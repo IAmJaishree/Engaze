@@ -3,22 +3,17 @@ package com.india.engaze.screens.Splash;
 import androidx.constraintlayout.widget.Group;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.india.engaze.AppController;
 import com.india.engaze.R;
 import com.india.engaze.screens.Authentication.PhoneInput.LoginActivity;
-import com.india.engaze.screens.MainActivity;
+import com.india.engaze.screens.HomePage.MainActivity;
 import com.india.engaze.screens.base.BaseActivity;
-
-import org.androidannotations.annotations.App;
 
 import javax.inject.Inject;
 

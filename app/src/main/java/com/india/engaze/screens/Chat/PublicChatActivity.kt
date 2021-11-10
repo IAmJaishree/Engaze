@@ -1,4 +1,4 @@
-package com.india.engaze.screens
+package com.india.engaze.screens.Chat
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.btp.me.classroom.Class.ChatMessage
 import com.btp.me.classroom.Class.MessageType
-import com.btp.me.classroom.adapter.ChatAdapter
+import com.india.engaze.screens.adapter.ChatAdapter
 import com.btp.me.classroom.slide.SlideActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.gson.Gson
-import com.india.engaze.screens.MainActivity.Companion.classId
+import com.india.engaze.screens.HomePage.MainActivity.Companion.classId
 import com.india.engaze.screens.Splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_public_chat.*
 import org.json.JSONObject
@@ -42,7 +42,6 @@ class PublicChatActivity : AppCompatActivity() {
             sendToHomepage()
             return
         }
-
         if(classId == "null") finish()
 
         public_chat_recycler_list.setHasFixedSize(true)
@@ -97,10 +96,10 @@ class PublicChatActivity : AppCompatActivity() {
     }
 
     private fun setToolbar() {
-//        setSupportActionBar(public_chat_toolbar)
-//        with(public_chat_toolbar){
-//            setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
-//        }
+       setSupportActionBar(public_chat_toolbar)
+        with(public_chat_toolbar){
+            setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
     }
@@ -249,7 +248,7 @@ class PublicChatActivity : AppCompatActivity() {
 //        val time = dateTime - date
 
 
-        Log.d("chetan", "date $dateTime : $date.")
+        Log.d("Engaze", "date $dateTime : $date.")
 
         map["message"] = message
         map["senderName"] = userName

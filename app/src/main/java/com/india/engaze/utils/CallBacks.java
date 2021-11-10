@@ -3,6 +3,7 @@ package com.india.engaze.utils;
 
 import com.directions.route.Route;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
 
 public class CallBacks {
 
@@ -44,5 +45,10 @@ public class CallBacks {
         void updatePath(Route route);
         void showError(String error);
         void before();
+    }
+
+    public interface FireCallback{
+        void onError(String message);
+        void onSuccess(DataSnapshot ds);
     }
 }
