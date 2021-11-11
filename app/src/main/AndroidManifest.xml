@@ -54,15 +54,29 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.india.engaze.screens.JoinClass"
+            android:name="com.india.engaze.screens.JoinClass.JoinClass"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.btp.me.classroom.slide.SlideActivity"
+            android:name=".screens.slide.SlideActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.JoinClass.JoinClassRequest"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.india.engaze.screens.Chat.PublicChatActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".screens.CreateClass.CreateClassActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".screens.ClassActivity.ClassActivity"
             android:screenOrientation="portrait" />
 
         <activity

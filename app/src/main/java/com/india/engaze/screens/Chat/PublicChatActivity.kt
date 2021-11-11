@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.btp.me.classroom.Class.ChatMessage
 import com.btp.me.classroom.Class.MessageType
 import com.india.engaze.screens.adapter.ChatAdapter
-import com.btp.me.classroom.slide.SlideActivity
+import com.india.engaze.screens.slide.SlideActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -38,17 +38,11 @@ class PublicChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_public_chat)
 
-        if(currentUser == null){
-            sendToHomepage()
-            return
-        }
         if(classId == "null") finish()
 
         public_chat_recycler_list.setHasFixedSize(true)
         public_chat_recycler_list.layoutManager = LinearLayoutManager(this)
-
         initialize()
-
         getSendMessageFromDatabase()
         public_chat_send_button.setOnClickListener { getTypeMessage() }
     }
@@ -104,7 +98,7 @@ class PublicChatActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
     }
 
-    private fun getTypeMessage() {                                                // The Message typed by the user in input box
+    private fun getTypeMessage() {
         if (public_chat_type_message.text.isNotBlank()) {
             val message = public_chat_type_message.text.toString().trim()
             if (isCommand(message)) {

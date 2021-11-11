@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/main_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/toolbar_with_back"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/create_class_progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/create_class_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:elevation="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_classroom"
+                app:civ_border_color="#f7f5f5"
+                app:civ_border_width="3dp"
+                android:layout_marginTop="50dp"/>
+
+            <TextView
+                android:id="@+id/create_class_tap_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Tap image to change it"
+                android:textSize="12sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/create_class_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Class Name : "
+                    android:textColor="#333"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/create_class_name"
+                    android:layout_width="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ems="12"
+                    android:hint="Class Name"
+                    android:inputType="textCapWords" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/create_class_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Class Status : "
+                    android:textColor="#333"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/create_class_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    android:ems="12"
+                    android:hint="Class Status"
+                    android:inputType="textCapSentences|textShortMessage|textMultiLine"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/create_class_physical_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max Capcacity: "
+                    android:textColor="#333"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/create_class_physical_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    android:ems="12"
+                    android:hint="Max physical capacity"
+                    android:inputType="number"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/create_class_timetable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TimeTable: "
+                    android:textColor="#333"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/create_class_timetable_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    android:ems="12"
+                    android:hint="Ex 3-4 PM | S,M,T,W,T,F,S"
+                    android:inputType="number"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/create_Class_create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:text="Create"
+                android:textColor="@color/grey_100"
+                android:background="@drawable/my_button"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

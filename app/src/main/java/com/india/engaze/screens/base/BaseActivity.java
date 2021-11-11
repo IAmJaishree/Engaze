@@ -3,7 +3,9 @@
 package com.india.engaze.screens.base;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -11,20 +13,20 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.btp.me.classroom.Class.FileBuilderNew;
 import com.india.engaze.AppController;
 import com.india.engaze.di.component.ActivityComponent;
 import com.india.engaze.di.component.DaggerActivityComponent;
 import com.india.engaze.di.module.ActivityModule;
 import com.india.engaze.di.module.AdapterModule;
 import com.india.engaze.screens.Splash.SplashActivity;
+import com.india.engaze.screens.slide.MyUploadingService;
 import com.india.engaze.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
 import butterknife.Unbinder;
 import timber.log.Timber;
-
-
 
 
 public abstract class BaseActivity extends AppCompatActivity
@@ -134,8 +136,11 @@ public abstract class BaseActivity extends AppCompatActivity
         finish();
     }
 
-    public void showToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    public void openWebPage(String url) {
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
-
 }

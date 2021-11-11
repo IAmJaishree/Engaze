@@ -5,6 +5,7 @@
 
     <dimen name="text_medium">12sp</dimen>
     <dimen name="text_large">14sp</dimen>
+    <dimen name="text_toolbar">20dp</dimen>
 
 
 </resources>

@@ -63,7 +63,7 @@ public class SlidePresenter<V extends SlideContract.View> extends BasePresenter<
             }
         });
 
-        AppController.getInstance().getFireBaseRepo().attachClassAsListener(classId, new CallBacks.FireCallback() {
+        AppController.getInstance().getFireBaseRepo().attachClassAsListener(new CallBacks.FireCallback() {
             @Override
             public void onError(String message) {
                 getMvpView().onError(message);

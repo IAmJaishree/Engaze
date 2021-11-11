@@ -5,9 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/main_toolbar"
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/toolbar_with_back"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/join_class_empty_list"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
         android:layout_height="match_parent"
         android:text="You are not a member of any Class."
         android:gravity="top|center_horizontal"
@@ -15,13 +25,14 @@
         android:textColor="#938f8f"
         android:textSize="16sp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/join_class_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"/>
 
 
 

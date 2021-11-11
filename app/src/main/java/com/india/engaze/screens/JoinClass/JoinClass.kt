@@ -1,6 +1,5 @@
-package com.india.engaze.screens
+package com.india.engaze.screens.JoinClass
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -16,42 +15,40 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.btp.me.classroom.Class.ClassAttribute
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.india.engaze.R
-import com.india.engaze.screens.Splash.SplashActivity
+import com.india.engaze.screens.adapter.ClassViewHolder
 import kotlinx.android.synthetic.main.activity_join_class.*
 import kotlinx.android.synthetic.main.single_classroom_layout.view.*
+import kotlinx.android.synthetic.main.toolbar_home.*
+import kotlinx.android.synthetic.main.toolbar_home.toolbar_text
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
 class JoinClass : AppCompatActivity() {
-
-//    private val type = arrayOf("Student","Teacher")
 
     private val mRootRef = FirebaseDatabase.getInstance().reference
     private val mCurrentUser by lazy { FirebaseAuth.getInstance().currentUser }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_class)
-
-        Log.e("JJ","Joinded clss");
-        if(mCurrentUser == null){
-            sendToHomepage()
-            return
-        }
-
         initialize()
     }
+
+    private fun initialize(){
+        toolbar_text.text = "Join a Class";
+        backButton.setOnClickListener {
+            onBackPressed()
+        }
+//        join_class_list.setHasFixedSize(true)
+        join_class_list.layoutManager = LinearLayoutManager(this)
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -67,7 +64,7 @@ class JoinClass : AppCompatActivity() {
             override fun onBindViewHolder(holder: ClassViewHolder, p: Int) {
                 holder.bind(classList[p])
                 holder.view.setOnClickListener{
-                    getDialogBoxRollNumber(classList[p].id)
+                    createJoinRequestActivity(classList[p].id)
                 }
             }
 
@@ -108,15 +105,12 @@ class JoinClass : AppCompatActivity() {
 
     }
 
-    private fun initialize(){
-        title = "Join Class"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        join_class_list.setHasFixedSize(true)
-        join_class_list.layoutManager = LinearLayoutManager(this)
+    private fun createJoinRequestActivity(id:String){
+        val intent = Intent(this@JoinClass, JoinClassRequest::class.java);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
-
 
     private fun getDialogBoxRollNumber(id:String){
         val rollNumberEditText = EditText(this)
@@ -170,31 +164,6 @@ class JoinClass : AppCompatActivity() {
         }
     }
 
-    private fun sendToHomepage(): FirebaseUser? {
-        val intent = Intent(this, SplashActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-        finish()
-        return null
-    }
-
-
-    private class ClassViewHolder(val view:View, val ctx: Context): RecyclerView.ViewHolder(view){
-        fun bind(classAttribute: ClassAttribute){
-            setImage(classAttribute.profileImage)
-            setName(classAttribute.name)
-            setStatus(classAttribute.status)
-            view.class_single_registered_as.visibility = View.INVISIBLE
-        }
-
-        private fun setName(name:String){ view.class_single_name.text = name }
-        private fun setStatus(status: String){ view.class_single_status.text = status }
-        private fun setImage(image:String){
-            val glideImage:Any = when(image){"default","null", "" -> R.drawable.ic_classroom else -> image}
-            Glide.with(ctx).load(glideImage).into(view.class_single_image)
-        }
-
-    }
 
     companion object {
         private const val TAG = "Join_Class"

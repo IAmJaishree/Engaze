@@ -15,7 +15,12 @@
     <!--B2 for %70 opacity-->
     <!--80 for %50 opacity-->
     <!--4C for %30 opacity-->
+    <color name="colorGrayDunzo">#f3f3f5</color>
+    <color name="rippleColor">#F8ABABB8</color>
 
+    <color name="yellow">#323940</color>
+
+    <color name="colorSecondaryLight">#2EB197</color>
 
     <!-- Others -->
 

@@ -51,10 +51,8 @@ public class HomePresenter<V extends HomeContract.View> extends BasePresenter<V>
                 for (DataSnapshot group:  ds.getChildren()) {
                     if (group.getValue() == null)
                         continue;
-
                     ArrayList<String> list = new ArrayList<>();
-
-                    list.add(group.getKey().toString());
+                    list.add(group.getKey());
                     list.add(group.child("as").getValue().toString());
 
                     classList.add(list);

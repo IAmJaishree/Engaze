@@ -51,4 +51,13 @@ public class CallBacks {
         void onError(String message);
         void onSuccess(DataSnapshot ds);
     }
+
+    public interface FireUpdate{
+        void onError(String message);
+        void onSuccess();
+    }
+
+    public interface ClassClickListener{
+        void classClicked(String id);
+    }
 }

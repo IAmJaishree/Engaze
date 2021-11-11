@@ -19,6 +19,8 @@ import com.india.engaze.screens.Authentication.OtpActivity.OtpContract;
 import com.india.engaze.screens.Authentication.OtpActivity.OtpPresenter;
 import com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhoneContract;
 import com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhonePresenter;
+import com.india.engaze.screens.ClassActivity.ClassContract;
+import com.india.engaze.screens.ClassActivity.ClassPresenter;
 import com.india.engaze.screens.HomePage.HomeContract;
 import com.india.engaze.screens.HomePage.HomePresenter;
 import com.india.engaze.screens.Splash.SplashContract;
@@ -103,6 +105,11 @@ public class ActivityModule {
 
     @Provides
     SlideContract.Presenter<SlideContract.View> providesSlidePresenter(SlidePresenter<SlideContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    ClassContract.Presenter<ClassContract.View> providesClassPresenter(ClassPresenter<ClassContract.View> presenter) {
         return presenter;
     }
 

@@ -1,9 +1,14 @@
 package com.btp.me.classroom.Class
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.util.Log
+import com.india.engaze.screens.HomePage.MainActivity
+import com.india.engaze.screens.slide.MyUploadingService
+import timber.log.Timber
 import java.io.File
 import java.io.IOException
 
@@ -69,33 +74,50 @@ abstract class MyColor {
 }
 
 abstract class FileBuilderNew {
+
     companion object {
-        fun createFile(title: String, activity: Activity): File? {
-            try {
-                var fileName = File(activity.getExternalFilesDir(Environment.DIRECTORY_DCIM), "Engage");
-
-                if (!fileName.exists()) {
-                    fileName.mkdir()
-                }
-                fileName = File(fileName.toString(), "media")
-                if (!fileName.exists()) {
-                    fileName.mkdir()
-                }
-                fileName = File(fileName.toString(), "pdf")
-                if (!fileName.exists()) {
-                    fileName.mkdir()
-                }
-                fileName = File(fileName, title)
-
-                fileName.createNewFile()
-
-                return fileName
-            } catch (error: IOException) {
-                error.printStackTrace()
+        fun upload(uri: Uri, activity: Activity, uploadingIntent: Intent, path:String) {
+            var file = uri.lastPathSegment
+            if (!file?.endsWith(".pdf")!!) {
+                file += ".pdf"
             }
-
-            return null
+            val data = """{"title": "$file","link": ""}"""
+            uploadingIntent.putExtra("fileUri", uri)
+            uploadingIntent.putExtra("storagePath", path)
+            uploadingIntent.putExtra("databasePath", path)
+            uploadingIntent.putExtra("data", data)
+            uploadingIntent.action = MyUploadingService.ACTION_UPLOAD
+            activity.startService(uploadingIntent)
+                    ?: Timber.e("At this this no activity is running")
         }
     }
+//    companion object {
+//        fun createFile(title: String, activity: Activity): File? {
+//            try {
+//                var fileName = File(activity.getExternalFilesDir(Environment.DIRECTORY_DCIM), "Engage");
+//
+//                if (!fileName.exists()) {
+//                    fileName.mkdir()
+//                }
+//                fileName = File(fileName.toString(), "media")
+//                if (!fileName.exists()) {
+//                    fileName.mkdir()
+//                }
+//                fileName = File(fileName.toString(), "pdf")
+//                if (!fileName.exists()) {
+//                    fileName.mkdir()
+//                }
+//                fileName = File(fileName, title)
+//
+//                fileName.createNewFile()
+//
+//                return fileName
+//            } catch (error: IOException) {
+//                error.printStackTrace()
+//            }
+//
+//            return null
+//        }
+//    }
 }
 

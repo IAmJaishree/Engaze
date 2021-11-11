@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:id="@+id/main_toolbar"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/toolbar_with_back"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/classDetailsContainer"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="4dp"
+            android:id="@+id/detailsContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nameContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewContainer"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Status"
+                    android:textColor="@color/quantum_brown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/maxStrength" />
+
+
+                <TextView
+                    android:id="@+id/teacherNameLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Teacher: "
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/teacherName"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/teacherName"/>
+
+                <TextView
+                    android:id="@+id/teacherName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Dr Shukla"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/teacherNameLabel"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lineContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:transitionName="lineContainer"
+                    app:layout_constraintEnd_toEndOf="@id/teacherName"
+                    app:layout_constraintStart_toStartOf="@id/teacherNameLabel"
+                    app:layout_constraintTop_toBottomOf="@id/teacherName">
+
+
+                    <include layout="@layout/horizontol_line" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Max Physical Strength:"
+                    android:textColor="@color/textDarkPrimary"
+                    android:textSize="12sp"
+                    android:transitionName="textView13"
+                    app:layout_constraintStart_toStartOf="@+id/teacherNameLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/lineContainer" />
+
+                <TextView
+                    android:id="@+id/maxStrength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toEndOf="@id/textView13"
+                    android:text="TextView"
+                    android:textColor="@color/textDarkPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:transitionName="min_order_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                    app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+                <TextView
+                    android:id="@+id/memberCountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Members:"
+                    android:textColor="@color/textDarkPrimary"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/textView13"
+                    android:transitionName="textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/maxStrength" />
+
+                <TextView
+                    android:id="@+id/memberCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="20 (Click to View all)"
+                    android:textColor="@color/textDarkPrimary"
+                    app:layout_constraintTop_toTopOf="@id/memberCountLabel"
+                    app:layout_constraintBottom_toBottomOf="@id/memberCountLabel"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:transitionName="min_order_view"
+                    app:layout_constraintTop_toBottomOf="@id/maxStrength"
+                    app:layout_constraintStart_toEndOf="@id/memberCountLabel"/>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/timeTableLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Time Table:"
+                    android:textColor="@color/textDarkPrimary"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/memberCountLabel"
+                    android:transitionName="textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/memberCount" />
+
+                <TextView
+                    android:id="@+id/timeTable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="3 - 4 PM   |  Sun - Fri"
+                    android:textColor="@color/textDarkPrimary"
+                    app:layout_constraintTop_toTopOf="@id/timeTableLabel"
+                    app:layout_constraintBottom_toBottomOf="@id/timeTableLabel"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:transitionName="min_order_view"
+                    app:layout_constraintTop_toBottomOf="@id/memberCount"
+                    app:layout_constraintStart_toEndOf="@id/timeTableLabel"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageViewContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/nameContainer">
+
+
+                <ImageView
+                    android:id="@+id/classImage"
+                    android:layout_width="80dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="5.5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="fitXY"
+                    android:transitionName="imageViewContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_shop_place_holder" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line"
+        android:layout_margin="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:transitionName="lineContainer"
+        app:layout_constraintEnd_toEndOf="@id/classDetailsContainer"
+        app:layout_constraintStart_toStartOf="@id/classDetailsContainer"
+        app:layout_constraintTop_toBottomOf="@id/classDetailsContainer">
+
+
+        <include layout="@layout/horizontol_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/updatesContainer"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/updatesLabel"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:text="Updates:"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@id/updatesLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/updatesLayout"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_comment"
+        app:backgroundTint="@color/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="32dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_menu_24px"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
