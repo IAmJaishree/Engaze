@@ -3,9 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="24dp"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
     android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lineContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:transitionName="lineContainer"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="@id/teacherName"
+        app:layout_constraintStart_toStartOf="@id/teacherNameLabel"
+        app:layout_constraintTop_toBottomOf="@id/teacherName">
+
+
+        <include layout="@layout/horizontol_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
         android:id="@+id/itemText"
@@ -24,25 +43,22 @@
         android:paddingTop="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/lineContainer" />
 
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="64dp"
+        android:layout_height="24dp"
         android:layout_margin="8dp"
-        android:layout_height="32dp"
         android:background="@drawable/rounded_gray_border"
-        android:paddingStart="2dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
         android:text="Add"
-        android:paddingEnd="2dp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/itemText">
 
     </Button>
 

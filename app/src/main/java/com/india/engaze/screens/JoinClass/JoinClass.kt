@@ -22,13 +22,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.india.engaze.R
 import com.india.engaze.screens.adapter.ClassViewHolder
+import com.india.engaze.screens.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_join_class.*
 import kotlinx.android.synthetic.main.single_classroom_layout.view.*
 import kotlinx.android.synthetic.main.toolbar_home.*
 import kotlinx.android.synthetic.main.toolbar_home.toolbar_text
 import kotlinx.android.synthetic.main.toolbar_with_back.*
 
-class JoinClass : AppCompatActivity() {
+class JoinClass : BaseActivity() {
 
     private val mRootRef = FirebaseDatabase.getInstance().reference
     private val mCurrentUser by lazy { FirebaseAuth.getInstance().currentUser }
@@ -45,7 +46,6 @@ class JoinClass : AppCompatActivity() {
         backButton.setOnClickListener {
             onBackPressed()
         }
-//        join_class_list.setHasFixedSize(true)
         join_class_list.layoutManager = LinearLayoutManager(this)
     }
 
@@ -78,13 +78,15 @@ class JoinClass : AppCompatActivity() {
                 classList.clear()
                 for (data in dataSnapshot.children){
                     if(data.hasChild("name")){
-//                        if(data.hasChild("members") && data.child("members").hasChild(mCurrentUser!!.uid))
-//                            continue
+                        if(data.hasChild("members") && data.child("members").hasChild(mCurrentUser!!.uid))
+                            continue
                         val classAttribute = ClassAttribute(
                                 data.key.toString(),
                                 data.child("name").value.toString(),
                                 data.child("status").value.toString(),
-                                data.child("thumbImage").value?.toString() ?: data.child("image").value.toString()
+                                data.child("thumbImage").value?.toString() ?: data.child("image").value.toString(),
+                                registeredAs = "not",
+                                timeTable = data.child("timeTable").value.toString()
                         )
 
                         classList.add(classAttribute)

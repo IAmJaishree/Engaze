@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.single_classroom_layout.view.*
 import java.util.ArrayList
 
 
- class ClassViewHolder(val view: View, val ctx: Context) : RecyclerView.ViewHolder(view) {
+class ClassViewHolder(val view: View, val ctx: Context) : RecyclerView.ViewHolder(view) {
 
     fun bind(list: ArrayList<String>) {
 
@@ -37,6 +37,9 @@ import java.util.ArrayList
                         ?: data.child("image").value.toString()
                 classAttribute.name = data.child("name").value.toString()
 
+                classAttribute.timeTable = data.child("timeTable").value.toString()
+                classAttribute.physicalStrength = data.child("physicalStrength").value.toString()
+                classAttribute.membersCount = data.child("members").childrenCount.toInt()
 
                 setVisibility(true)
                 bind(classAttribute)
@@ -52,7 +55,7 @@ import java.util.ArrayList
             setStatus(this.status)
             setProfileImage(this.profileImage)
             setRegisteredAs(this.registeredAs)
-
+            view.timeTable.text = _class.timeTable
         }
     }
 
@@ -64,12 +67,12 @@ import java.util.ArrayList
 
     private fun setBackground(registeredAs: String) {
 
-        val gd = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(Color.parseColor("#ffffff"), Color.parseColor("#ffffff"), Color.parseColor("#ffffff"), when (registeredAs) {
-            "teacher" -> Color.parseColor("#FFA631"); else -> Color.parseColor("#00FFFF")
+        view.registeredAs.text = when (registeredAs) {
+            "teacher" -> "You are teacher";
+            "student" -> "You are student";
+            else -> "You are not member"
         }
-        ))
-        gd.cornerRadius = 0f
-        view.background = gd
+
     }
 
     private fun setName(name: String) {

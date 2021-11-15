@@ -10,14 +10,14 @@
         android:id="@+id/closeView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorSecondaryLight"
+        android:background="@color/colorPrimaryDark"
         android:drawableStart="@drawable/ic_keyboard_arrow_down_black_24dp"
         android:gravity="center"
-        android:text="CLOSE"
+        android:text="CLOSE       "
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:id="@+id/menu"
         android:background="@color/white"
@@ -49,7 +48,7 @@
             android:id="@+id/settings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_rectangle"
+            android:background="@drawable/grayish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,11 +71,39 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/marks"
+            android:id="@+id/members"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:background="@drawable/ripple_rectangle"
             app:layout_constraintTop_toBottomOf="@id/settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <TextView
+                android:id="@+id/membersLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="Members"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/textDarkPrimary"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/marks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grayish"
+            app:layout_constraintTop_toBottomOf="@id/members"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -130,7 +157,7 @@
             android:id="@+id/assignments"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_rectangle"
+            android:background="@drawable/grayish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +170,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginEnd="8dp"
                 android:padding="8dp"
-                android:text="Assignment"
+                android:text="Assignment and Exams"
                 android:textColor="@color/textDarkPrimary"
                 android:textSize="@dimen/text_large"
                 app:layout_constraintTop_toTopOf="parent"
@@ -179,6 +206,32 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pendingRequest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grayish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/studyMaterials">
+
+
+
+            <TextView
+                android:id="@+id/pendingRequestLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:text="Pending Request"
+                android:textColor="@color/textDarkPrimary"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

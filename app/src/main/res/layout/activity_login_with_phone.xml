@@ -1,5 +1,4 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,31 +29,6 @@
 
 
         <include layout="@layout/phone_input" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/referralFrame"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:orientation="horizontal"
-            android:paddingEnd="24dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/colorSecondary"
-            app:helperTextEnabled="true"
-            app:hintTextColor="@color/colorSecondary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/referral"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:cursorVisible="true"
-                android:hint="Referral Code (if any)"
-                android:inputType="textNoSuggestions"
-                android:textCursorDrawable="@drawable/black_cursor"
-                android:textSize="@dimen/text_medium" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>
