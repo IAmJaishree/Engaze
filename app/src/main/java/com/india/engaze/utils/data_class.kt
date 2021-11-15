@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.telephony.CellSignalStrength
 import android.util.Log
 import com.india.engaze.screens.HomePage.MainActivity
 import com.india.engaze.screens.slide.MyUploadingService
@@ -17,7 +18,10 @@ class ClassAttribute(
         var name: String = "",
         var status: String = "",
         var profileImage: String = "",
-        var registeredAs: String = ""
+        var registeredAs: String = "",
+        var timeTable: String = "",
+        var physicalStrength: String = "",
+        var membersCount :Int = 0,
 )
 
 
@@ -91,33 +95,26 @@ abstract class FileBuilderNew {
                     ?: Timber.e("At this this no activity is running")
         }
     }
-//    companion object {
-//        fun createFile(title: String, activity: Activity): File? {
-//            try {
-//                var fileName = File(activity.getExternalFilesDir(Environment.DIRECTORY_DCIM), "Engage");
-//
-//                if (!fileName.exists()) {
-//                    fileName.mkdir()
-//                }
-//                fileName = File(fileName.toString(), "media")
-//                if (!fileName.exists()) {
-//                    fileName.mkdir()
-//                }
-//                fileName = File(fileName.toString(), "pdf")
-//                if (!fileName.exists()) {
-//                    fileName.mkdir()
-//                }
-//                fileName = File(fileName, title)
-//
-//                fileName.createNewFile()
-//
-//                return fileName
-//            } catch (error: IOException) {
-//                error.printStackTrace()
-//            }
-//
-//            return null
-//        }
-//    }
+
 }
+
+data class Assignment(
+        var title: String? = null,
+        var description: String? = null,
+        var submissionDate: String? = null,
+        var uploadingDate: String? = null,
+        var maxMarks: String? = null,
+        var link: String? = null
+)
+
+
+data class StudentAssignmentDetails(
+        var link: String? = null,
+        var marks: String? = null,
+        var name: String? = null,
+        var rollNumber: String? = null,
+        var state: String? = null,
+        var userId: String? = null,
+        var registeredAs: String? = null
+)
 

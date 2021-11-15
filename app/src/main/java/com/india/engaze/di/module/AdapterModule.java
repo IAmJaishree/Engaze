@@ -20,15 +20,4 @@ public class AdapterModule {
         this.mActivity = activity;
     }
 
-
-    @Provides
-    PlacesClient getPlacesClient() {
-        if (!Places.isInitialized()) {
-            Places.initialize(
-                    mActivity.getApplicationContext(), Constants.google_api_key);
-        }
-        PlacesClient client = Places.createClient(mActivity);
-        return client;
-    }
-
 }

@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.india.engaze.AppController
 
 import com.india.engaze.R
-import com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputActivity
+import com.india.engaze.screens.Authentication.BasicDetailsInput.UserProfileActivity
 import com.india.engaze.screens.CreateClass.CreateClassActivity
 import com.india.engaze.screens.JoinClass.JoinClass
 import com.india.engaze.screens.Splash.SplashActivity
@@ -56,22 +56,27 @@ class BottomSheetNavigationFragment : BottomSheetDialogFragment() {
     }
 
     private fun createClass() {
+        dismiss()
         val intent = Intent(context, CreateClassActivity::class.java)
         startActivity(intent)
     }
 
     private fun logout() {
+        dismiss()
         AppController.getInstance().logout()
         val intent = Intent(context, SplashActivity::class.java)
         startActivity(intent)
     }
 
     fun goToProfile() {
-        val intent = Intent(context, BasicDetailsInputActivity::class.java)
+        dismiss()
+        val intent = Intent(context, UserProfileActivity::class.java)
         startActivity(intent)
+
     }
 
     private fun joinClass() {
+        dismiss()
         startActivity(Intent(context, JoinClass::class.java))
     }
 

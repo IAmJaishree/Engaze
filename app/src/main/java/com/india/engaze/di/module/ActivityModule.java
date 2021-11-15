@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.india.engaze.di.Qualifiers.ActivityContext;
 import com.india.engaze.di.Qualifiers.LinLayoutHori;
 import com.india.engaze.di.Qualifiers.LinLayoutVert;
-import com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputContract;
-import com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsPresenter;
 import com.india.engaze.screens.Authentication.OtpActivity.OtpContract;
 import com.india.engaze.screens.Authentication.OtpActivity.OtpPresenter;
 import com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhoneContract;
@@ -93,10 +91,6 @@ public class ActivityModule {
         return presenter;
     }
 
-    @Provides
-    BasicDetailsInputContract.Presenter<BasicDetailsInputContract.View> providesBasicDetailsPresenter(BasicDetailsPresenter<BasicDetailsInputContract.View> presenter) {
-        return presenter;
-    }
 
     @Provides
     HomeContract.Presenter<HomeContract.View> providesHomePresenter(HomePresenter<HomeContract.View> presenter) {

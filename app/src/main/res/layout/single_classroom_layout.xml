@@ -2,6 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/class_parent"
+    android:elevation="4dp"
+    android:background="@drawable/grayish"
+    android:layout_margin="4dp"
+    android:paddingTop="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,9 +15,9 @@
         android:id="@+id/class_single_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:contentDescription="@string/classroom_profile_picture"
-        app:layout_constraintBottom_toBottomOf="@+id/class_single_status"
+        app:layout_constraintBottom_toBottomOf="@+id/timeTable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/class_single_name" />
 
@@ -19,11 +25,11 @@
         android:id="@+id/class_single_registered_as"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
         android:contentDescription="Registered As"
         android:src="@drawable/ic_student"
         app:layout_constraintBottom_toBottomOf="@+id/class_single_status"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registeredAs"
+        app:layout_constraintStart_toStartOf="@+id/registeredAs"
         app:layout_constraintTop_toTopOf="@+id/class_single_name" />
 
     <TextView
@@ -32,10 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="classname"
         android:textColor="#333"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/class_single_registered_as"
         app:layout_constraintStart_toEndOf="@id/class_single_image"
@@ -46,23 +52,55 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/quantum_brown600"
         android:maxLines="1"
         android:text="@string/status"
-        android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/class_single_registered_as"
         app:layout_constraintStart_toStartOf="@+id/class_single_name"
-        app:layout_constraintTop_toBottomOf="@id/class_single_name" />
+        app:layout_constraintTop_toBottomOf="@id/view" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="16dp"
-        android:background="#ddd"
+    <TextView
+        android:id="@+id/timeTable"
+        android:layout_width="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:text="@string/status"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/class_single_registered_as"
+        app:layout_constraintStart_toStartOf="@+id/class_single_name"
+        app:layout_constraintTop_toBottomOf="@id/class_single_status" />
+
+
+    <TextView
+        android:id="@+id/registeredAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="@string/status"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/timeTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/class_single_registered_as" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/class_single_name"
         app:layout_constraintStart_toStartOf="@id/class_single_name"
-        app:layout_constraintTop_toBottomOf="@+id/class_single_status" />
+        app:layout_constraintTop_toBottomOf="@+id/class_single_name">
+
+
+        <include layout="@layout/horizontol_line" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

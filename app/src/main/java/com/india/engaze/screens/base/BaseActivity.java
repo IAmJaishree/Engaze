@@ -3,30 +3,19 @@
 package com.india.engaze.screens.base;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.btp.me.classroom.Class.FileBuilderNew;
 import com.india.engaze.AppController;
+import com.india.engaze.R;
 import com.india.engaze.di.component.ActivityComponent;
 import com.india.engaze.di.component.DaggerActivityComponent;
 import com.india.engaze.di.module.ActivityModule;
 import com.india.engaze.di.module.AdapterModule;
-import com.india.engaze.screens.Splash.SplashActivity;
-import com.india.engaze.screens.slide.MyUploadingService;
-import com.india.engaze.utils.NetworkUtils;
-
-import java.util.ArrayList;
-
-import butterknife.Unbinder;
-import timber.log.Timber;
 
 
 public abstract class BaseActivity extends AppCompatActivity
@@ -34,9 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
 
     ActivityComponent mActivityComponent;
-    private Unbinder mUnBinder;
     boolean isLoading = false;
-    boolean toShowInternetNotAvailable = true;
 
     @Override
     protected void onPause() {
@@ -51,24 +38,14 @@ public abstract class BaseActivity extends AppCompatActivity
                 .activityModule(new ActivityModule(this)).adapterModule(new AdapterModule(this))
                 .applicationComponent(((AppController) getApplication()).getComponent())
                 .build();
+
+        setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     public ActivityComponent getActivityComponent() {
         return mActivityComponent;
     }
 
-
-    public void setUnBinder(Unbinder unBinder) {
-        mUnBinder = unBinder;
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (mUnBinder != null) {
-            mUnBinder.unbind();
-        }
-        super.onDestroy();
-    }
 
     @Override
     public void showLoading() {
@@ -82,31 +59,13 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void onError(String message) {
-
         if (message == null) {
             Toast.makeText(this, "Weak Internet Connection", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!isNetworkConnected()) {
-            if (toShowInternetNotAvailable) {
-                toShowInternetNotAvailable = false;
-                (new Handler()).postDelayed(() -> toShowInternetNotAvailable = true, 8000);
-                Toast.makeText(this, "Internet not available", Toast.LENGTH_SHORT).show();
-            }
-        } else if (message.toLowerCase().contains("unable to resolve")) {
-            Toast.makeText(this, "Weak Internet connection", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-        }
         if (isLoading) hideLoading();
     }
 
-
-    @Override
-    public void onThrowableError(String message) {
-        Timber.e(message);
-        Toast.makeText(this, "Some error occured", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void showMessage(String message) {
@@ -122,18 +81,8 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean isNetworkConnected() {
-        return NetworkUtils.isNetworkConnected(this);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    public void sendToSplash() {
-        startActivity(new Intent(this, SplashActivity.class));
-        finish();
     }
 
     public void openWebPage(String url) {
@@ -141,6 +90,12 @@ public abstract class BaseActivity extends AppCompatActivity
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
+        }
+    }
+
+    public void setStatusBarColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(color);
         }
     }
 }

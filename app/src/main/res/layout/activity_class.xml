@@ -20,7 +20,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:id="@+id/classDetailsContainer"
-        android:padding="4dp"
+        android:paddingBottom="8dp"
+        android:layout_margin="4dp"
+        android:elevation="4dp"
+        android:background="@drawable/grayish"
         app:layout_constraintTop_toBottomOf="@id/main_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_height="wrap_content">
@@ -39,34 +42,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageViewContainer"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Status"
-                    android:textColor="@color/quantum_brown"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/maxStrength" />
+
 
 
                 <TextView
                     android:id="@+id/teacherNameLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
                     android:text="Teacher: "
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/teacherName"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/teacherName"/>
 
@@ -107,13 +100,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="4dp"
                     android:text="Max Physical Strength:"
                     android:textColor="@color/textDarkPrimary"
                     android:textSize="12sp"
                     android:transitionName="textView13"
                     app:layout_constraintStart_toStartOf="@+id/teacherNameLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/lineContainer" />
+                    app:layout_constraintTop_toBottomOf="@+id/timeTableLabel" />
 
                 <TextView
                     android:id="@+id/maxStrength"
@@ -149,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="20 (Click to View all)"
+                    android:text="20"
                     android:textColor="@color/textDarkPrimary"
                     app:layout_constraintTop_toTopOf="@id/memberCountLabel"
                     app:layout_constraintBottom_toBottomOf="@id/memberCountLabel"
@@ -159,22 +151,17 @@
                     app:layout_constraintTop_toBottomOf="@id/maxStrength"
                     app:layout_constraintStart_toEndOf="@id/memberCountLabel"/>
 
-
-
-
-
                 <TextView
                     android:id="@+id/timeTableLabel"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_height="wrap_content"
                     android:text="Time Table:"
                     android:textColor="@color/textDarkPrimary"
                     android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@id/memberCountLabel"
                     android:transitionName="textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/memberCount" />
+                    app:layout_constraintStart_toStartOf="@id/memberCountLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/lineContainer" />
 
                 <TextView
                     android:id="@+id/timeTable"
@@ -197,41 +184,61 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/imageViewContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginBottom="12dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nameContainer">
+                app:layout_constraintTop_toTopOf="parent">
 
 
-                <ImageView
+                <!--                <de.hdodenhof.circleimageview.CircleImageView-->
+                <!--                    android:id="@+id/classImage"-->
+                <!--                    android:layout_width="80dp"-->
+                <!--                    android:layout_height="88dp"-->
+                <!--                    android:layout_marginStart="5.5dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginEnd="8dp"-->
+                <!--                    android:scaleType="fitXY"-->
+                <!--                    android:transitionName="imageViewContainer"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    app:srcCompat="@drawable/ic_shop_place_holder" />-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/classImage"
-                    android:layout_width="80dp"
+                    android:layout_width="88dp"
                     android:layout_height="88dp"
-                    android:layout_marginStart="5.5dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:scaleType="fitXY"
+                    android:elevation="8dp"
                     android:transitionName="imageViewContainer"
+                    app:civ_border_color="@color/colorGrayDunzo"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_shop_place_holder" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="Status"
+                android:textColor="@color/quantum_brown"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/imageViewContainer"
+                app:layout_constraintStart_toStartOf="@id/imageViewContainer"
+                app:layout_constraintTop_toBottomOf="@id/imageViewContainer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -243,8 +250,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/line"
-        android:layout_margin="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_width="0dp"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:transitionName="lineContainer"
         app:layout_constraintEnd_toEndOf="@id/classDetailsContainer"
@@ -268,6 +277,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/updatesLabel"
             android:textSize="16sp"
+            android:layout_marginStart="2dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_width="match_parent"
@@ -275,12 +285,27 @@
             android:layout_height="wrap_content"/>
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/updateLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:transitionName="lineContainer"
+            app:layout_constraintEnd_toEndOf="@id/updatesLabel"
+            app:layout_constraintStart_toStartOf="@id/updatesLabel"
+            app:layout_constraintTop_toBottomOf="@id/updatesLabel">
+
+
+            <include layout="@layout/horizontol_line" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
-            app:layout_constraintTop_toBottomOf="@id/updatesLabel"
+            app:layout_constraintTop_toBottomOf="@id/updateLine"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/updatesLayout"
             android:orientation="vertical"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -295,18 +320,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/ic_comment"
-        app:backgroundTint="@color/colorSecondary"
+
+        app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/colorPrimary" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_app_bar"
-        android:layout_width="32dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ic_menu_24px"
+        android:layout_width="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="8dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_menu_24px"
+        android:layout_marginStart="12dp"
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent" />
 

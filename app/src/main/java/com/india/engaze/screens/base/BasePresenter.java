@@ -21,8 +21,6 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
 
     private V mMvpView;
 
-    private static final String TAG = "BasePresenter";
-
     private final CompositeDisposable mCompositeDisposable;
     private final ISessionManager sessionManager;
     private final FireBaseRepository fireBaseRepository;
@@ -54,7 +52,6 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     public FireBaseRepository getFireBaseRepo() {
         return fireBaseRepository;
     }
-
 
 
 }

@@ -13,14 +13,11 @@ import android.widget.TextView;
 import com.github.jorgecastilloprz.FABProgressCircle;
 import com.github.jorgecastilloprz.listeners.FABProgressListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.india.engaze.R;
-import com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputActivity;
 import com.india.engaze.screens.Authentication.OtpActivity.OtpActivity;
+import com.india.engaze.screens.HomePage.MainActivity;
 import com.india.engaze.screens.base.BaseActivity;
-import com.india.engaze.service.AppSignatureHelper;
-import com.india.engaze.utils.Functions;
 
 import javax.inject.Inject;
 
@@ -28,7 +25,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 import static android.view.Gravity.LEFT;
 
@@ -62,15 +58,13 @@ public class LoginWithPhone extends BaseActivity implements LoginWithPhoneContra
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @BindView(R.id.referral)
-    TextInputEditText referraInput;
+
 
     @Inject
     LoginWithPhoneContract.Presenter<LoginWithPhoneContract.View> presenter;
 
 
 
-    String referral;
     private String phone;
     private String verificationId;
     private PhoneAuthProvider.ForceResendingToken token;
@@ -90,24 +84,8 @@ public class LoginWithPhone extends BaseActivity implements LoginWithPhoneContra
         setupWindowAnimations();
         ivBack.setOnClickListener(v -> onBackPressed());
 
-        try {
-            referral = getIntent().getExtras().getString("referral");
-        } catch (Exception ignored) {
-        }
-
-        if (referral != null) referraInput.setText(referral);
-
         fab.setOnClickListener(v -> {
-            if (etPhoneNo.getText().toString().equals("9162829505")) {
-                AppSignatureHelper appSignatureHelper = new AppSignatureHelper(this);
-                for (String s :
-                        appSignatureHelper.getAppSignatures()) {
-                    onError(s);
-                    Timber.e(s);
-                }
-            }
             if (!getIsLoading())
-//                presenter.sendOtp(etPhoneNo.getText().toString(), Functions.getHash(this), referraInput.getText().toString());
                   presenter.sendOtp(etPhoneNo.getText().toString(), this);
             });
         fabProgressCircle.attachListener(LoginWithPhone.this);
@@ -171,7 +149,7 @@ public class LoginWithPhone extends BaseActivity implements LoginWithPhoneContra
 
     @Override
     public void verificationCompleted() {
-        Intent intent = new Intent(LoginWithPhone.this, BasicDetailsInputActivity.class);
+        Intent intent = new Intent(LoginWithPhone.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

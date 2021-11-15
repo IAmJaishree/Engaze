@@ -7,10 +7,14 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.india.engaze.AppController
 import com.india.engaze.R
-import com.india.engaze.screens.Chat.PublicChatActivity
+import com.india.engaze.screens.Authentication.BasicDetailsInput.UserProfileActivity
 import com.india.engaze.screens.ClassActivity.ClassActivity
-import com.india.engaze.screens.CreateClass.CreateClassActivity
 import com.india.engaze.screens.adapter.BottomSheetNavigationFragment.Companion.newInstance
 import com.india.engaze.screens.adapter.ClassListAdapter
 import com.india.engaze.screens.base.BaseActivity
@@ -28,9 +32,25 @@ class MainActivity : BaseActivity(), HomeContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         activityComponent.inject(this);
         mPresenter.onAttach(this)
         initSetup();
+    }
+
+    override fun onStart() {
+        super.onStart()
+        FirebaseDatabase.getInstance().reference.child("Users/${AppController.getInstance().firebaseUser!!.uid}/register").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (!(p0.exists() && p0.value == "yes")) {
+                    startActivity(Intent(this@MainActivity, UserProfileActivity::class.java))
+                }
+            }
+        })
     }
 
     private fun initSetup() {

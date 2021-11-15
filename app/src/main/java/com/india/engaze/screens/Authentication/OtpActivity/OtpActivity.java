@@ -168,6 +168,8 @@ public class OtpActivity extends BaseActivity implements OtpContract.View, FABPr
     @Override
     public void onFABProgressAnimationEnd() {
         Intent intent = new Intent(OtpActivity.this, MainActivity.class);
+        intent.putExtra("fromOtp", true);
+        intent.putExtra("phone", phone);
         startActivity(intent);
         finish();
     }

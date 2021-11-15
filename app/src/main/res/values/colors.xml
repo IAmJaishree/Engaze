@@ -10,6 +10,8 @@
     <color name="textDarkSecondary">#8A000000</color> <!--8A for %54 opacity-->
     <!--61 for %38 opacity-->
 
+    <color name="background1">#d3ffce</color>
+    <color name="warning">#FF0000</color>
     <!-- White Text Color for Dark Background -->
     <!--%100 opacity-->
     <!--B2 for %70 opacity-->
@@ -49,6 +51,5 @@
 
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
-    <color name="grey_500">#9E9E9E</color>
 
 </resources>

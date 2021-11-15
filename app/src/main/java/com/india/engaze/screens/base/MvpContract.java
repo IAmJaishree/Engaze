@@ -14,15 +14,11 @@ public class MvpContract {
 
         void showMessage(String message);
 
-        boolean isNetworkConnected();
-
-        void onThrowableError(String message);
     }
 
     public interface Presenter<V extends View> {
 
         void onAttach(V mvpView);
-
 
     }
 

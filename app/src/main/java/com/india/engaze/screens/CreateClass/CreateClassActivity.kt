@@ -84,13 +84,11 @@ class CreateClassActivity : BaseActivity() {
     private fun createClass() {
         mRootRef.child("Users/${mCurrentUser?.uid}/name").addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
-                Log.d("chetan","create_class_1 Error: ${p0.message}")
                 Toast.makeText(this@CreateClassActivity, "Failed : ${p0.message}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onDataChange(p0: DataSnapshot) {
                 if(p0.value == "null"){
-                    Log.d("chetan","Error: name is not set")
                     Toast.makeText(this@CreateClassActivity, "Failed : name is not set", Toast.LENGTH_SHORT).show()
                 }else{
                     userMap["Classroom/$classId/members/${mCurrentUser?.uid}/as"] = "teacher"

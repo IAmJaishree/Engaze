@@ -7,8 +7,8 @@ import com.india.engaze.utils.CallBacks
 
 
 class FireBaseRepository {
-    var firebaseDatabase: FirebaseDatabase
-    var mRootRef: DatabaseReference
+    var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    var mRootRef: DatabaseReference = FirebaseDatabase.getInstance().reference
 
 
     fun attachUserListener(fireCallback: CallBacks.FireCallback) {
@@ -92,8 +92,4 @@ class FireBaseRepository {
         }
     }
 
-    init {
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        mRootRef = FirebaseDatabase.getInstance().reference
-    }
 }

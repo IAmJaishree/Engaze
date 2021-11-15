@@ -10,14 +10,14 @@
         android:id="@+id/closeView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorSecondaryLight"
+        android:background="@color/colorPrimaryDark"
         android:drawableStart="@drawable/ic_keyboard_arrow_down_black_24dp"
         android:gravity="center"
-        android:text="CLOSE"
+        android:text="CLOSE      "
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,6 +29,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profileContainer"
         android:layout_width="match_parent"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
@@ -65,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/user_name"
             android:layout_marginTop="2dp"
-            android:text="surender@androhub.com"
+            android:text="Click to update profile"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/user_name"
@@ -75,19 +77,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/divider_one"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:background="#447e7e7e"
-        app:layout_constraintTop_toBottomOf="@id/profileContainer" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profileContainer" >
+
+        <include
+            layout="@layout/horizontol_line"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:id="@+id/menu"
         android:background="@color/white"
@@ -98,8 +104,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/create_class"
             android:layout_width="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_rectangle"
+            android:background="@drawable/grayish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +123,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_customer_support" />
+                app:srcCompat="@drawable/create" />
 
 
             <TextView
@@ -138,6 +146,8 @@
             android:id="@+id/join_class"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:background="@drawable/ripple_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -154,7 +164,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_customer_support" />
+                app:srcCompat="@drawable/group" />
 
 
             <TextView
@@ -178,7 +188,9 @@
             android:id="@+id/logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_rectangle"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@drawable/grayish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +206,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_customer_support" />
+                app:srcCompat="@drawable/logout" />
 
 
             <TextView

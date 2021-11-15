@@ -23,6 +23,7 @@ public class SessionManager implements ISessionManager {
 
     private static final String PREF_UNIQUE_ID = "pref_unique_id";
     private static final String USER = "user";
+    private static final String IS_TEACHER = "is_teacher";
 
 
     private SharedPreferences pref;
@@ -99,6 +100,17 @@ public class SessionManager implements ISessionManager {
         String json = pref.getString(USER, null);
         Gson gson = new Gson();
         return gson.fromJson(json, FirebaseUser.class);
+    }
+
+    @Override
+    public boolean getIsTeacher() {
+        return pref.getBoolean(IS_TEACHER, false);
+    }
+
+    @Override
+    public void setIsTeacher(boolean isTeacher) {
+        editor.putBoolean(IS_TEACHER,isTeacher );
+        editor.commit();
     }
 
 

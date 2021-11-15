@@ -2,15 +2,9 @@
 
 package com.india.engaze.screens.HomePage;
 
-import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.india.engaze.AppController;
 import com.india.engaze.repository.session.ISessionManager;
-import com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputActivity;
 import com.india.engaze.screens.base.BasePresenter;
 import com.india.engaze.utils.CallBacks;
 

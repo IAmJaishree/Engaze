@@ -80,15 +80,38 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".screens.student.StudentMarksActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.assignment.AssignmentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.assignment.AssignmentDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.assignment.AssignmentUploadActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.PendingClassRequest.PendingRequestActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".screens.Authentication.BasicDetailsInput.UserProfileActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhone"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.india.engaze.screens.Authentication.OtpActivity.OtpActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.india.engaze.screens.Authentication.BasicDetailsInput.BasicDetailsInputActivity"
-            android:screenOrientation="portrait" />
 
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo" />

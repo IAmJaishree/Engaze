@@ -23,4 +23,8 @@ public interface ISessionManager {
     void setFirebaseUser(FirebaseUser user);
 
     FirebaseUser getFirebaseUser();
+
+    boolean getIsTeacher();
+
+    void setIsTeacher(boolean isTeacher);
 }
