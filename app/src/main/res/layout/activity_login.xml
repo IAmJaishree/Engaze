@@ -12,9 +12,9 @@
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:layout_height="296dp"
+            android:layout_height="400dp"
             android:scaleType="fitStart"
-            android:src="@drawable/login"
+            android:src="@drawable/loginn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +39,8 @@
                 android:text="Welcome to\nHO GAYI"
                 android:textColor="@color/black"
                 android:textSize="40sp"
-                app:layout_constraintBottom_toTopOf="@+id/tvMoving"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvMoving"
@@ -66,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/view"

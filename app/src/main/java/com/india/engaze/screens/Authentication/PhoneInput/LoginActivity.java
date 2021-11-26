@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.india.engaze.R;
+import com.india.engaze.screens.base.BaseActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
@@ -19,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
 
     @BindView(R.id.phoneContainer)
@@ -59,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setup() {
         String text = "Welcome to\n";
-        String text2 = "Class";
+        String text2 = "Engage Class";
         Spannable spannable = new SpannableString(text + text2);
         spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), text.length(), (text + text2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         greetText.setText(spannable, TextView.BufferType.SPANNABLE);
