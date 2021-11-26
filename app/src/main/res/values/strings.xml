@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">ClassEngaze</string>
+    <string name="app_name">ClassEngage</string>
     <string name="enter_no">Enter your mobile number</string>
     <string name="phone_hint">Enter your mobile number</string>
     <string name="transition_arrow">transition_arrow</string>
