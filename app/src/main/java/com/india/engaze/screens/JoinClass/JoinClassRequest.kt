@@ -43,25 +43,31 @@ class JoinClassRequest : BaseActivity() {
 
                 if(tt.exists()){
                     val details = tt.child("details")
-                    reason.setText(details.child("reason").value.toString())
 
-                    if((tt.child("physical").value.toString()).contains("true")){
-                        physicalCheckBox.isChecked = true
-                        val snapshot = tt.child("covid-cert")
 
-                        if (snapshot.exists() && snapshot.child("link").exists()) {
+                    if(details.exists()){
+                        submitRequest.text = "Update Request"
+                        reason.setText(details.child("reason").value.toString())
 
-                            covidCertificateContainer.visibility = View.VISIBLE
-                            file_single_title.text = snapshot.child("title").value.toString();
-                            file_single_date.visibility = View.INVISIBLE
-
-                            Timber.e(snapshot.key);
-                            certUploaded = true;
-                        } else {
-                            covidCertificateContainer.visibility = View.GONE
+                        if((details.child("physical").value.toString()).contains("true")){
+                            physicalCheckBox.isChecked = true
+                        }else if((details.child("physical").value.toString()).contains("false")){
+                            physicalCheckBox.isChecked = false
                         }
-                    }else{
-                        physicalCheckBox.isChecked = false
+                    }
+
+                    val snapshot = tt.child("covid-cert")
+
+                    if (snapshot.exists() && snapshot.child("link").exists()) {
+
+                        covidCertificateContainer.visibility = View.VISIBLE
+                        file_single_title.text = snapshot.child("title").value.toString();
+                        file_single_date.visibility = View.INVISIBLE
+
+                        Timber.e(snapshot.key);
+                        certUploaded = true;
+                    } else {
+                        covidCertificateContainer.visibility = View.GONE
                     }
                 }
             }
