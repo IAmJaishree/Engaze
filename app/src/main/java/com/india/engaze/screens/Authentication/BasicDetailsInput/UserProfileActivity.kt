@@ -77,10 +77,6 @@ class UserProfileActivity : BaseActivity() {
 
     private fun initialize() {
 
-        teacherCheckbox.setOnCheckedChangeListener { buttonView, _ ->
-            AppController.getInstance().getmSessionManager().isTeacher = (buttonView.isChecked)
-        }
-
         toolbar_text.text = "User Profile Details"
         backButton.setOnClickListener{onBackPressed()}
 
