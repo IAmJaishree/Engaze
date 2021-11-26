@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:33481938172:android:b3b8fec66bc0bbc4f93379",
+        "mobilesdk_app_id": "1:33481938172:android:f7c2686f4f69ce89f93379",
         "android_client_info": {
           "package_name": "com.engaze.user"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "33481938172-49nj3imct3slnugqb4ffsg8gog2fi022.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.engaze.user",
-            "certificate_hash": "3e959c04d83b1239063f2c89b70f0723f5392502"
-          }
-        },
         {
           "client_id": "33481938172-vt70r9ht740e3ck5o3lbrf6t2bsj071c.apps.googleusercontent.com",
           "client_type": 3
@@ -52,7 +44,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "33481938172-k2mvl45q9bhj330d5nin7n3tiv4q1aft.apps.googleusercontent.com",
+          "client_id": "33481938172-ru3mb5najphnbonfe6v69nj23olsti91.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.india.engaze",

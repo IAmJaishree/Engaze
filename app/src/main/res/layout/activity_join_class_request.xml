@@ -24,12 +24,14 @@
         <EditText
             android:id="@+id/reason"
             android:hint="Reason"
+            android:layout_margin="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/bg_edittext"
             android:gravity="center"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="140dp"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inPersonContainer"
             android:layout_width="match_parent"
@@ -54,15 +56,20 @@
                 android:id="@+id/attachCertButton"
                 app:layout_constraintTop_toTopOf="@id/physicalCheckBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="10sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_border_green"
+                android:layout_marginEnd="4dp"
+                android:textSize="12sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="Attach covid cert"
                 app:layout_constraintBottom_toBottomOf="@id/physicalCheckBox"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/white" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:id="@+id/covidCertificateContainer"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/physicalCheckBox"
                 android:layout_height="wrap_content">
 
@@ -83,7 +90,9 @@
         android:layout_width="match_parent"
         android:text="Submit Request"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/rectangle_border_green"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/submitRequest"
         android:layout_height="wrap_content"/>
 

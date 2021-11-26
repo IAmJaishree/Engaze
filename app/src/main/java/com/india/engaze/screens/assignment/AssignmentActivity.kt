@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.Assignment
+import com.india.engaze.utils.Assignment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.india.engaze.screens.HomePage.MainActivity
@@ -17,6 +17,8 @@ import com.india.engaze.screens.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_assignment.*
 import kotlinx.android.synthetic.main.single_assignment_layout.view.*
 import com.india.engaze.R
+import com.india.engaze.utils.TimeAgo
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
 class AssignmentActivity : BaseActivity() {
 
@@ -38,8 +40,9 @@ class AssignmentActivity : BaseActivity() {
 
     private fun initialize() {
         title = "Assignment"
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        toolbar_text.text = "Assignments and Exams"
+        backButton.setOnClickListener { onBackPressed() }
         assignment_list.setHasFixedSize(true)
         assignment_list.layoutManager = LinearLayoutManager(this)
 
@@ -110,7 +113,8 @@ class AssignmentActivity : BaseActivity() {
                             title = assignmentDataSnapshot.child("title").value.toString(),
                             description = assignmentDataSnapshot.child("description").value.toString(),
                             submissionDate = "",
-                            uploadingDate = assignmentDataSnapshot.key.toString()
+                            uploadingDate = assignmentDataSnapshot.key,
+                            uploadDate =  TimeAgo.formatDateTime(assignmentDataSnapshot.key!!.toLong()),
                     )
                     assignmentList.add(assignment)
                 }
@@ -164,6 +168,7 @@ class AssignmentActivity : BaseActivity() {
             with(assignment) {
                 setTitle(this.title)
                 setDescription(this.description)
+                view.file_single_date.text  = assignment.uploadDate
             }
         }
 

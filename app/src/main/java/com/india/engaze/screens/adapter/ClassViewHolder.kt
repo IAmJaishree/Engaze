@@ -1,19 +1,15 @@
 package com.india.engaze.screens.adapter
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.ClassAttribute
+import com.india.engaze.utils.ClassAttribute
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.india.engaze.R
-import com.india.engaze.screens.HomePage.MainActivity
 import kotlinx.android.synthetic.main.single_classroom_layout.view.*
 import java.util.ArrayList
 

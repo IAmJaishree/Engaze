@@ -106,6 +106,16 @@
 
 
         <activity
+            android:name=".screens.Members.MemberInfoActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".screens.Members.ClassMembersActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.india.engaze.screens.Authentication.PhoneInput.LoginWithPhone"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />

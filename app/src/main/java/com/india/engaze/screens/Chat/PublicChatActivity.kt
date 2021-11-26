@@ -8,8 +8,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.btp.me.classroom.Class.ChatMessage
-import com.btp.me.classroom.Class.MessageType
+import com.india.engaze.utils.ChatMessage
+import com.india.engaze.utils.MessageType
 import com.india.engaze.screens.adapter.ChatAdapter
 import com.india.engaze.screens.slide.SlideActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -25,14 +25,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 import com.india.engaze.R
+import com.india.engaze.screens.base.BaseActivity
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
-class PublicChatActivity : AppCompatActivity() {
+class PublicChatActivity : BaseActivity() {
 
     private val mRootRef = FirebaseDatabase.getInstance().reference
     private val currentUser: FirebaseUser? by lazy { FirebaseAuth.getInstance().currentUser }
 
     private var isTeacher : Boolean= false
-    private var isPendingRequest: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +49,7 @@ class PublicChatActivity : AppCompatActivity() {
     }
 
     private fun initialize(){
-        setToolbar()
         setTitle()
-     //   getPendingRequestAccessed()
-        getPendingRequest()
         setUserName()
     }
 
@@ -74,6 +72,7 @@ class PublicChatActivity : AppCompatActivity() {
     }
 
     private fun setTitle(){
+        backButton.setOnClickListener { onBackPressed() }
         mRootRef.child("Classroom/$classId/name").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.d(TAG, "No Internet connections")
@@ -82,20 +81,11 @@ class PublicChatActivity : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.value == null || p0.value.toString() == "null")
                     finish()
-                supportActionBar?.title = p0.value.toString()
+                toolbar_text.text = p0.value.toString()
             }
 
         })
 
-    }
-
-    private fun setToolbar() {
-       setSupportActionBar(public_chat_toolbar)
-        with(public_chat_toolbar){
-            setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
-        }
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
     }
 
     private fun getTypeMessage() {
@@ -123,45 +113,6 @@ class PublicChatActivity : AppCompatActivity() {
                 sendMessage(commandList[1], "command", "me")
                 Toast.makeText(this, title, Toast.LENGTH_LONG).show()
             }
-            commandList[2] ->{
-                sendMessage(commandList[2],"command","me")
-                sendToMembersActivity()
-            }
-            commandList[3] -> {
-                sendMessage(commandList[3], "command", "me")
-                sendToSlideActivity()
-            }
-            commandList[4] ->{
-                sendMessage(commandList[4],"command","me")
-                sendToAssignmentUploadActivity()
-            }
-            commandList[5] ->{
-                sendMessage(commandList[5],"command", "me")
-                sendToAssignmentActivity()
-            }
-            commandList[6] ->{
-                sendMessage(commandList[6],"command","me")
-                leaveClassroom()
-            }
-            commandList[7] ->{
-                sendMessage(commandList[7],"command","me")
-                sendToPendingRequestActivity()
-            }
-
-            commandList[8] -> {
-                sendMessage(commandList[8], "command", "me")
-                sendToMarksActivity()
-            }
-
-            commandList[9] -> {
-                sendMessage(commandList[9], "command", "me")
-                sendToClassProfileActivity()
-            }
-
-            commandList[10] -> {
-                sendMessage(commandList[10], "command", "me")
-                sendToExaminationActivity()
-            }
             else ->{
                 Toast.makeText(this,"No Such Command Found",Toast.LENGTH_LONG).show()
                 return true
@@ -172,66 +123,9 @@ class PublicChatActivity : AppCompatActivity() {
         return true
     }
 
-    private fun sendToPendingRequestActivity() {
-//        if (isTeacher)
-//            startActivity(Intent(this, PendingRequestActivity::class.java))
-//        else{
-//            Toast.makeText(this,"Be Teacher First", Toast.LENGTH_SHORT).show()
-//        }
-    }
-
-    //this can now done by setUserName
-    private fun getPendingRequestAccessed(){
-        mRootRef.child("Class-Enroll/${currentUser!!.uid}/$classId/as").addValueEventListener(object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                Log.d(TAG,"Error : ${p0.message}")
-            }
-
-            override fun onDataChange(data: DataSnapshot) {
-                isTeacher = data.value == "teacher"
-                invalidateOptionsMenu()
-            }
-
-        })
-    }
-
-    private fun getPendingRequest(){
-        mRootRef.child("Join-Class-Request/$classId").addValueEventListener(object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                Log.d(TAG,"Error : ${p0.message}")
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                Log.d(TAG,"Data exist or not : ${p0.exists()}")
-                isPendingRequest = p0.exists()
-                invalidateOptionsMenu()
-            }
-
-        })
-    }
-
-    private fun leaveClassroom() {
-        val map = HashMap<String, String>()
-        map["request"] = "accept"
-        map["as"] = "leave"
-        mRootRef.child("Join-Class-Request/$classId/${currentUser!!.uid}").setValue(map).addOnSuccessListener {
-            Log.d(TAG, "Request send")
-            Toast.makeText(this, "Request to Leave", Toast.LENGTH_SHORT).show()
-
-            finish()
-        }.addOnFailureListener { exception ->
-            Log.d(TAG, "Leave classroom Error : ${exception.message}")
-        }
-    }
-
-//    private fun calculateMaximumMarks(userId:String){
-//        mRootRef.child("Classroom/")
-//    }
-
     private fun sendMessage(message: String, type: String, visibility: String) {
         val map = HashMap<String, String>()
 
-        Log.d(TAG,"userName : $userName, userRollNumber : $rollNumber, isTeacher : $isTeacher")
 
         if (userName == "null") return
 
@@ -239,8 +133,6 @@ class PublicChatActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH)
         val dateTime = System.currentTimeMillis()
         val date = dateFormat.parse(dateFormat.format(dateTime)).time
-//        val time = dateTime - date
-
 
         Log.d("Engaze", "date $dateTime : $date.")
 
@@ -325,146 +217,7 @@ class PublicChatActivity : AppCompatActivity() {
         })
     }
 
-    private fun sendToMainActivity() {
-        finish()
-    }
 
-    private fun sendToHomepage(): FirebaseUser? {
-        val intent = Intent(this, SplashActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-        finish()
-        return null
-    }
-
-    private fun sendToSlideActivity() {
-        if (classId == "null") {
-            sendToMainActivity()
-            return
-        }
-
-        val intent = Intent(this, SlideActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun sendToMembersActivity() {
-        if (classId == "null") {
-            sendToMainActivity()
-            return
-        }
-
-//        val intent = Intent(this,ClassMembersActivity::class.java)
-//        startActivity(intent)
-    }
-
-    private fun sendToAssignmentUploadActivity() {
-        if (classId == "null") {
-            sendToMainActivity()
-            return
-        }
-
-//        startActivity(Intent(this,AssignmentUploadActivity::class.java))
-    }
-
-    private fun sendToAssignmentActivity(){
-        if (classId == "null") {
-            sendToMainActivity()
-            return
-        }
-
-//        startActivity(Intent(this,AssignmentActivity::class.java))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.public_chat_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if(menu == null)
-            return false
-
-//        menu.findItem(R.id.pending_request).isVisible = isTeacher && isPendingRequest
-//
-//        menu.findItem(R.id.new_assignment).isVisible = isTeacher
-
-
-
-        return super.onPrepareOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item == null) return false
-
-        when(item.itemId){
-            R.id.members -> {
-                sendMessage(commandList[2],"command","me")
-                sendToMembersActivity()
-            }
-
-            R.id.slide -> {
-                sendMessage(commandList[3],"command","me")
-                sendToSlideActivity()
-            }
-
-            R.id.new_assignment -> {
-                sendMessage(commandList[4],"command", "me")
-                sendToAssignmentUploadActivity()
-            }
-
-            R.id.assignment -> {
-                sendMessage(commandList[5],"command","me")
-                sendToAssignmentActivity()
-            }
-
-            R.id.leave -> {
-                sendMessage(commandList[6],"command","me")
-                leaveClassroom()
-            }
-
-            R.id.pending_request -> {
-                sendMessage(commandList[7],"command","me")
-                sendToPendingRequestActivity()
-            }
-
-            R.id.marks ->{
-                sendMessage(commandList[8], "command", "me")
-                sendToMarksActivity()
-            }
-
-            R.id.setting -> {
-                sendMessage(commandList[9], "command", "me")
-                sendToClassProfileActivity()
-            }
-
-            R.id.examination -> {
-                sendMessage(commandList[10], "command", "me")
-                sendToExaminationActivity()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun sendToExaminationActivity() {
-        if (classId == "null") {
-            sendToMainActivity()
-            return
-        }
-
-//        startActivity(Intent(this, ExaminationActivity::class.java))
-    }
-
-    private fun sendToClassProfileActivity() {
-//        startActivity(Intent(this, ClassProfileActivity::class.java))
-    }
-
-    private fun sendToMarksActivity() {
-        if (isTeacher){
-            Toast.makeText(this,"Teacher",Toast.LENGTH_SHORT).show()
-        }else{
-//            startActivity(Intent(this, StudentMarksActivity::class.java))
-        }
-    }
 
     companion object {
         private const val TAG = "Public_Chat_Activity"

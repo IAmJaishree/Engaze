@@ -13,6 +13,8 @@ import com.india.engaze.AppController
 import com.india.engaze.R
 import com.india.engaze.screens.CreateClass.CreateClassActivity
 import com.india.engaze.screens.JoinClass.JoinClass
+import com.india.engaze.screens.Members.ClassMembersActivity
+import com.india.engaze.screens.Members.MemberInfoActivity
 import com.india.engaze.screens.PendingClassRequest.PendingRequestActivity
 import com.india.engaze.screens.Splash.SplashActivity
 import com.india.engaze.screens.assignment.AssignmentActivity
@@ -46,6 +48,9 @@ class ClassMenuFragment : BottomSheetDialogFragment() {
             studyMaterials.setOnClickListener { goToSlides() }
             assignments.setOnClickListener { goToAssignments() }
 
+            members.setOnClickListener{
+                goToMembers()
+            }
             marks.setOnClickListener { goToMarks() }
             examination.visibility = View.GONE
             pendingRequest.setOnClickListener {
@@ -70,6 +75,11 @@ class ClassMenuFragment : BottomSheetDialogFragment() {
         }
     }
 
+    private fun goToMembers() {
+        dismiss()
+        startActivity(Intent(context, ClassMembersActivity::class.java))
+    }
+
     private fun goToPendingRequest() {
         dismiss()
         startActivity(Intent(context, PendingRequestActivity::class.java))
@@ -92,7 +102,9 @@ class ClassMenuFragment : BottomSheetDialogFragment() {
 
     private fun goToSettings() {
         dismiss()
-        startActivity(Intent(context, CreateClassActivity::class.java))
+        val intent = Intent(context, CreateClassActivity::class.java)
+        intent.putExtra("toCreate", false);
+        startActivity(intent)
     }
 
 

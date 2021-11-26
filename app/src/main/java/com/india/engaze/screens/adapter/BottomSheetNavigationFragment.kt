@@ -58,6 +58,7 @@ class BottomSheetNavigationFragment : BottomSheetDialogFragment() {
     private fun createClass() {
         dismiss()
         val intent = Intent(context, CreateClassActivity::class.java)
+        intent.putExtra("toCreate", true);
         startActivity(intent)
     }
 

@@ -40,7 +40,6 @@
         android:id="@+id/single_student_marks_assignment_details_download_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
         android:background="#0000"
         android:clickable="false"
         android:src="@drawable/ic_cloud_download_blue_24dp"

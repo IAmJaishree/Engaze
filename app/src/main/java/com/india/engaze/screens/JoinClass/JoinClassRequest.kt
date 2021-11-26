@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.btp.me.classroom.Class.FileBuilderNew
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,6 +12,7 @@ import com.google.firebase.database.ValueEventListener
 import com.india.engaze.R
 import com.india.engaze.screens.base.BaseActivity
 import com.india.engaze.screens.slide.MyUploadingService
+import com.india.engaze.utils.FileBuilderNew
 import com.india.engaze.utils.IntentResult
 import kotlinx.android.synthetic.main.activity_join_class.*
 import kotlinx.android.synthetic.main.activity_join_class_request.*
@@ -38,22 +38,36 @@ class JoinClassRequest : BaseActivity() {
         id = intent.extras!!.getString("id", null)
         initialize()
 
-        mRootRef.child("Join-Class-Request/${id}/${mCurrentUser!!.uid}/covid-cert").addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists() && snapshot.child("link").exists()){
-                    file_single_title.text = snapshot.child("title").value.toString();
-                    file_single_date.visibility = View.INVISIBLE
-                    file_single_download.setOnClickListener{
-                        openWebPage(snapshot.child("link").value.toString())
-                    }
-                    Timber.e(snapshot.key);
-                    certUploaded = true;
-                }
+        mRootRef.child("Join-Class-Request/${id}/${mCurrentUser!!.uid}").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(tt: DataSnapshot) {
 
+                if(tt.exists()){
+                    val details = tt.child("details")
+                    reason.setText(details.child("reason").value.toString())
+
+                    if((tt.child("physical").value.toString()).contains("true")){
+                        physicalCheckBox.isChecked = true
+                        val snapshot = tt.child("covid-cert")
+
+                        if (snapshot.exists() && snapshot.child("link").exists()) {
+
+                            covidCertificateContainer.visibility = View.VISIBLE
+                            file_single_title.text = snapshot.child("title").value.toString();
+                            file_single_date.visibility = View.INVISIBLE
+
+                            Timber.e(snapshot.key);
+                            certUploaded = true;
+                        } else {
+                            covidCertificateContainer.visibility = View.GONE
+                        }
+                    }else{
+                        physicalCheckBox.isChecked = false
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-               showMessage(error.message)
+                showMessage(error.message)
             }
         })
     }
@@ -63,19 +77,29 @@ class JoinClassRequest : BaseActivity() {
         backButton.setOnClickListener {
             onBackPressed()
         }
+        covidCertificateContainer.visibility = View.GONE
+        attachCertButton.visibility = View.GONE
 
-        attachCertButton.setOnClickListener{
+        file_single_date_label.visibility = View.GONE
+        file_single_date.visibility = View.GONE
+        attachCertButton.setOnClickListener {
             startActivityForResult(Intent.createChooser(IntentResult.forPDF(), "Select Document"), 0)
         }
-
+        physicalCheckBox.setOnCheckedChangeListener { buttonView, _ ->
+            if (buttonView.isChecked) {
+                attachCertButton.visibility = View.VISIBLE
+            } else {
+                attachCertButton.visibility = View.GONE
+            }
+        }
         submitRequest.setOnClickListener {
-            if(!physicalCheckBox.isChecked || certUploaded){
-                if(reason.text.toString().isEmpty()){
+            if (!physicalCheckBox.isChecked || certUploaded) {
+                if (reason.text.toString().isEmpty()) {
                     showMessage("Please enter a valid reason to attend this class");
-                }else{
+                } else {
                     joinClass(id);
                 }
-            }else{
+            } else {
                 showMessage("Upload Covid certificate for physical classes");
             }
         }
@@ -93,6 +117,7 @@ class JoinClassRequest : BaseActivity() {
 
         mRootRef.child("Join-Class-Request/$id/${mCurrentUser!!.uid}/details").setValue(map).addOnSuccessListener {
             showMessage("requested")
+            finish()
         }.addOnFailureListener { exception ->
             showMessage(exception.message)
         }

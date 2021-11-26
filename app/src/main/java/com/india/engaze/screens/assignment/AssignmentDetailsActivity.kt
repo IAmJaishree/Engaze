@@ -15,21 +15,18 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.StudentAssignmentDetails
-import com.btp.me.classroom.slide.MyDownloadingService
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.gson.Gson
+import com.india.engaze.R
 import com.india.engaze.screens.HomePage.MainActivity.Companion.classId
 import com.india.engaze.screens.base.BaseActivity
 import com.india.engaze.screens.slide.MyUploadingService
 import com.india.engaze.utils.IntentResult
+import com.india.engaze.utils.StudentAssignmentDetails
 import kotlinx.android.synthetic.main.activity_assignment_details.*
 import kotlinx.android.synthetic.main.single_students_marks_assignment_details.view.*
-import java.io.File
-import java.io.IOException
-import com.india.engaze.R
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
 private val currentUser by lazy { FirebaseAuth.getInstance().currentUser }
 private val mRootRef = FirebaseDatabase.getInstance().reference
@@ -55,8 +52,8 @@ class AssignmentDetailsActivity : BaseActivity() {
 
     private fun initialize() {
         title = "Assignment Details"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        backButton.setOnClickListener { onBackPressed() }
+        toolbar_text.text = "Assignment Details"
         assignment = intent.getStringExtra("assignment")
     }
 
@@ -72,12 +69,11 @@ class AssignmentDetailsActivity : BaseActivity() {
 
                 assignment_details_max_marks.text = maximumMarks
                 assignment_details_title.text = database.child("title").value?.toString()
-                assignment_details_submission_date.text = database.child("submissionDate").value?.toString()
                 assignment_details_description.text = database.child("description").value?.toString()
 
-                if(database.child("link").value.toString() != "null") {
+                if (database.child("link").value.toString() != "null") {
                     assignment_details_assignment_download_button.visibility = View.VISIBLE
-                }else{
+                } else {
                     assignment_details_assignment_download_button.visibility = View.INVISIBLE
                 }
 
@@ -104,21 +100,19 @@ class AssignmentDetailsActivity : BaseActivity() {
                             val marksList = ArrayList<StudentAssignmentDetails>()
 
                             for (member in database.child("marks").children) {
-                                Log.d(TAG, "Member : $member")
                                 //if (dataSnapshot.child("${member.key.toString()}/as").value.toString() != "student") {
-                                  //  continue
+                                //  continue
                                 //}
                                 val studentAssignmentDetails = StudentAssignmentDetails(
-                                        link = database.child("link").value.toString(),
+                                        link = member.child("link").value.toString(),
                                         marks = member.child("marks").value.toString(),
                                         name = dataSnapshot.child("${member.key.toString()}/name").value.toString(),
                                         rollNumber = dataSnapshot.child("${member.key.toString()}/rollNumber").value.toString(),
-                                        state = database.child("state").value.toString(),
+                                        state = member.child("state").value.toString(),
                                         userId = member.key.toString(),
-                                        registeredAs = dataSnapshot.child("${member.key.toString()}/as").value.toString()
                                 )
 
-                                Log.d(TAG,"student assignment details : $studentAssignmentDetails")
+                                Log.d(TAG, "student assignment details : $studentAssignmentDetails")
                                 marksList.add(studentAssignmentDetails)
                             }
                             if (marksList.size == 0) {
@@ -145,8 +139,7 @@ class AssignmentDetailsActivity : BaseActivity() {
         })
     }
 
-    private fun getDialogBox(userId:String?){
-        Log.d(TAG, "Assignment/$classId/$assignment/marks/$userId/marks")
+    private fun getDialogBox(userId: String?){
         if (userId == null)
             return
 
@@ -197,7 +190,6 @@ class AssignmentDetailsActivity : BaseActivity() {
 
         val studentMarksAdapter = object : RecyclerView.Adapter<StudentMarksViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentMarksViewHolder {
-                Log.d(TAG, "chetan : 1")
                 return StudentMarksViewHolder(LayoutInflater.from(parent.context)
                         .inflate(R.layout.single_students_marks_assignment_details, parent, false))
             }
@@ -206,6 +198,16 @@ class AssignmentDetailsActivity : BaseActivity() {
 
             override fun onBindViewHolder(holder: StudentMarksViewHolder, position: Int) {
                 holder.bind(marksList[position])
+
+                 holder.view.single_student_marks_assignment_details_download_button.setOnClickListener {
+
+                    val webpage = Uri.parse(marksList[position].link)
+                    val intent = Intent(Intent.ACTION_VIEW, webpage)
+                    if (intent.resolveActivity(packageManager) != null) {
+                        startActivity(intent)
+                    }
+
+                }
                 holder.view.setOnClickListener { _->
                     getDialogBox(marksList[position].userId)
                 }

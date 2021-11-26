@@ -3,7 +3,7 @@ package com.india.engaze.screens.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.ClassAttribute
+import com.india.engaze.utils.ClassAttribute
 import com.india.engaze.R
 import com.india.engaze.utils.CallBacks
 

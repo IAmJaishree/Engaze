@@ -5,9 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import com.btp.me.classroom.Class.Assignment
+import com.india.engaze.utils.Assignment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
@@ -17,6 +16,7 @@ import com.india.engaze.screens.base.BaseActivity
 import com.india.engaze.screens.slide.MyUploadingService
 import com.india.engaze.utils.IntentResult
 import kotlinx.android.synthetic.main.activity_assignment_upload.*
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -100,40 +100,9 @@ class AssignmentUploadActivity : BaseActivity() {
 
     }
 
-    private fun isDate(date:String?, dateFormat: SimpleDateFormat): Boolean{
-        dateFormat.isLenient = false
-
-        try {
-            dateFormat.parse(date)
-        }catch (e: ParseException){
-            Log.d("chetan", "Date is invalid")
-            return false
-        }
-
-        Log.d("chetan", "Date is valid")
-
-        return true
-    }
-
-
     private fun initialize(){
-        title = "Upload"
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-//        assignment_upload_radio.setOnCheckedChangeListener { _, checkedId ->
-//            when (checkedId) {
-//                R.id.assignment_upload_radio_assignment -> {
-//                    isAssignment = "Assignment"
-//                    assignment_upload_submission_date.visibility = View.VISIBLE
-//                    assignment_upload_submission_date.visibility = View.VISIBLE
-//                }
-//                R.id.assignment_upload_radio_exam -> {
-//                    isAssignment = "Examination"
-//                    assignment_upload_submission_date.visibility = View.GONE
-//                    assignment_upload_submission_date.visibility = View.GONE
-//                }
-//            }
-//        }
+        backButton.setOnClickListener { onBackPressed() }
+        toolbar_text.text = "Upload Assignment/Exam"
 
         assignment_upload_file.setOnClickListener {
             startActivityForResult(Intent.createChooser(IntentResult.forPDF(),"Select Document"),0)
@@ -163,7 +132,9 @@ class AssignmentUploadActivity : BaseActivity() {
 
         uploadingIntent.action = MyUploadingService.ACTION_UPLOAD
         startService(uploadingIntent)
-                ?: Log.d("chetan", "At this this no activy is running")
+                ?: Log.d("js", "At this this no activy is running")
+
+        showMessage("Uploading started, check progress in notification")
     }
 
 }

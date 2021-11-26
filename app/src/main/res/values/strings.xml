@@ -9,7 +9,6 @@
     <string name="transition_tvPhoneNo">transition_tvPhoneNo</string>
     <string name="transition_llPhone">transition_llPhone</string>
     <string name="welcome_back">Enter the 6-digit code sent to you at</string>
-    <string name="email_not_valid">Email address not valid</string>
 
     ---------------------------------------------------------------------------------------------------
     <string name="status">Status</string>

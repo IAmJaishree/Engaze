@@ -8,8 +8,8 @@
     android:background="@color/colorPrimaryDark"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="2dp"
-    android:paddingTop="2dp">
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
 
 
     <ImageButton

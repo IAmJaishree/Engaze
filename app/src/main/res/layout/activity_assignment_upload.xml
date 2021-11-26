@@ -4,94 +4,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background1"
     tools:context=".screens.assignment.AssignmentUploadActivity">
 
-    <TextView
-        android:id="@+id/assignment_upload_title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/main_toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="16dp"
-        android:text="Title"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="119dp" />
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/toolbar_with_back"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/assignment_upload_title"
-        android:hint="Title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/assignment_upload_title_view"
-        app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
-
-    <TextView
-        android:id="@+id/assignment_upload_description_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
-        app:layout_constraintTop_toBottomOf="@id/assignment_upload_title"/>
-
-    <EditText
-        android:id="@+id/assignment_upload_description"
-        android:hint="Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toStartOf="@id/assignment_upload_title"
-        app:layout_constraintTop_toBottomOf="@id/assignment_upload_description_view"/>
-
-    <TextView
-        android:id="@+id/assignment_upload_max_marks_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Maximum Marks"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
-        app:layout_constraintTop_toBottomOf="@id/assignment_upload_description"/>
-
-    <EditText
-        android:id="@+id/assignment_upload_max_marks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Maximum Marks"
-        android:inputType="number"
-        android:ems="8"
-        app:layout_constraintStart_toStartOf="@id/assignment_upload_title"
-        app:layout_constraintTop_toBottomOf="@id/assignment_upload_max_marks_view"/>
-
-
-
-    <Button
-        android:id="@+id/assignment_upload_file"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="File"
-        android:background="@drawable/my_button"
-        android:textColor="@color/grey_300"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/assignment_upload_max_marks_view"
-        app:layout_constraintStart_toEndOf="@id/assignment_upload_max_marks"/>
-
-    <Button
-        android:id="@+id/assignment_upload_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/my_button"
-        android:text="Submit"
-        android:textColor="@color/grey_300"
+        android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assignment_upload_file" />
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+        android:layout_height="0dp">
+
+
+        <TextView
+            android:id="@+id/assignment_upload_title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="16dp"
+            android:text="Title"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="119dp" />
+
+        <EditText
+            android:id="@+id/assignment_upload_title"
+            android:hint="Title"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/assignment_upload_title_view"
+            app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:id="@+id/assignment_upload_description_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
+            app:layout_constraintTop_toBottomOf="@id/assignment_upload_title"/>
+
+        <EditText
+            android:id="@+id/assignment_upload_description"
+            android:hint="Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="@id/assignment_upload_title"
+            app:layout_constraintTop_toBottomOf="@id/assignment_upload_description_view"/>
+
+        <TextView
+            android:id="@+id/assignment_upload_max_marks_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maximum Marks"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/assignment_upload_title_view"
+            app:layout_constraintTop_toBottomOf="@id/assignment_upload_description"/>
+
+        <EditText
+            android:id="@+id/assignment_upload_max_marks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Maximum Marks"
+            android:inputType="number"
+            android:textSize="16sp"
+            android:ems="8"
+            app:layout_constraintStart_toStartOf="@id/assignment_upload_title"
+            app:layout_constraintTop_toBottomOf="@id/assignment_upload_max_marks_view"/>
+
+
+        <Button
+            android:id="@+id/assignment_upload_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_button"
+            android:drawableEnd="@drawable/attachment_white"
+            android:drawablePadding="16dp"
+            android:padding="8dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="Upload File"
+            android:textColor="@color/grey_300"
+            app:layout_constraintBottom_toTopOf="@+id/assignment_upload_submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assignment_upload_max_marks" />
+
+        <Button
+            android:id="@+id/assignment_upload_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/rounded_rectangle_border_green"
+            android:text="Submit"
+            android:textColor="@color/grey_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

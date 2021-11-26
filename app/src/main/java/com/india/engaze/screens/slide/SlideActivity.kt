@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.FileBuilderNew
+import com.india.engaze.utils.FileBuilderNew
 import com.google.firebase.database.*
 import com.india.engaze.R
 import com.india.engaze.screens.HomePage.MainActivity.Companion.classId
@@ -17,6 +17,7 @@ import com.india.engaze.screens.base.BaseActivity
 import com.india.engaze.utils.IntentResult
 import kotlinx.android.synthetic.main.activity_slide.*
 import kotlinx.android.synthetic.main.single_slide_layout.view.*
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 import java.util.*
 import javax.inject.Inject
 
@@ -43,9 +44,8 @@ class SlideActivity : BaseActivity(), SlideContract.View {
 
         mPresenter.attachListeners(classId);
 
-        title = "Slides"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        toolbar_text.text = "Study Materials"
+        backButton.setOnClickListener { onBackPressed() }
 
         slide_list.setHasFixedSize(true)
         slide_list.layoutManager = LinearLayoutManager(this)

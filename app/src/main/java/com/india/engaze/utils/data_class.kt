@@ -1,17 +1,11 @@
-package com.btp.me.classroom.Class
+package com.india.engaze.utils
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import android.os.Environment
-import android.telephony.CellSignalStrength
-import android.util.Log
-import com.india.engaze.screens.HomePage.MainActivity
+import android.widget.Toast
 import com.india.engaze.screens.slide.MyUploadingService
 import timber.log.Timber
-import java.io.File
-import java.io.IOException
 
 class ClassAttribute(
         var id: String = "",
@@ -21,7 +15,7 @@ class ClassAttribute(
         var registeredAs: String = "",
         var timeTable: String = "",
         var physicalStrength: String = "",
-        var membersCount :Int = 0,
+        var membersCount: Int = 0,
 )
 
 
@@ -56,31 +50,13 @@ abstract class MyColor {
             }
             return colorCode[sum % colorCount] // colorCode[sumOfDigits(sum)]
         }
-
-        private fun sumOfDigits(number: Int): Int {
-            var result: Int
-            if (number < 0)
-                result = -number
-            else
-                result = number
-
-            while (result >= colorCount) {
-                var temp = 0
-                while (result > 0) {
-                    temp += result % 10
-                    result /= 10
-                }
-                result = temp
-            }
-            return result
-        }
     }
 }
 
 abstract class FileBuilderNew {
 
     companion object {
-        fun upload(uri: Uri, activity: Activity, uploadingIntent: Intent, path:String) {
+        fun upload(uri: Uri, activity: Activity, uploadingIntent: Intent, path: String) {
             var file = uri.lastPathSegment
             if (!file?.endsWith(".pdf")!!) {
                 file += ".pdf"
@@ -93,9 +69,11 @@ abstract class FileBuilderNew {
             uploadingIntent.action = MyUploadingService.ACTION_UPLOAD
             activity.startService(uploadingIntent)
                     ?: Timber.e("At this this no activity is running")
+
+
+            Toast.makeText(activity, "Uploading started check notification for its completion.", Toast.LENGTH_SHORT).show()
         }
     }
-
 }
 
 data class Assignment(
@@ -104,7 +82,8 @@ data class Assignment(
         var submissionDate: String? = null,
         var uploadingDate: String? = null,
         var maxMarks: String? = null,
-        var link: String? = null
+        var link: String? = null,
+        var uploadDate: String? = null
 )
 
 

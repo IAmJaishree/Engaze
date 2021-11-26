@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/chat_background"
+    android:background="@drawable/graychat"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/public_chat_toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:titleTextColor="@color/white"
-        android:minHeight="?attr/actionBarSize"/>
+        android:id="@+id/main_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/toolbar_with_back"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/public_chat_recycler_list"
@@ -35,13 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/type_message"
             android:hint="Type a message..."
             android:maxLines="6"
-            android:paddingBottom="11dp"
+            android:paddingBottom="8dp"
             android:paddingEnd="22dp"
             android:paddingStart="22dp"
-            android:paddingTop="11dp"
+            android:paddingTop="8dp"
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
             android:textColorHint="#CFD8DC"

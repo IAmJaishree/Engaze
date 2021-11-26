@@ -3,14 +3,11 @@
     <color name="colorPrimary">#30ccac</color>
     <color name="colorPrimaryDark">#333A42</color>
 
-    <color name="colorSecondary">#ff714c</color>
-
     <!-- Dark Text Color for Light Background -->
     <color name="textDarkPrimary">#DE000000</color> <!--DE for %87 opacity-->
     <color name="textDarkSecondary">#8A000000</color> <!--8A for %54 opacity-->
     <!--61 for %38 opacity-->
 
-    <color name="background1">#d3ffce</color>
     <color name="warning">#FF0000</color>
     <!-- White Text Color for Dark Background -->
     <!--%100 opacity-->
@@ -21,8 +18,6 @@
     <color name="rippleColor">#F8ABABB8</color>
 
     <color name="yellow">#323940</color>
-
-    <color name="colorSecondaryLight">#2EB197</color>
 
     <!-- Others -->
 
@@ -49,7 +44,6 @@
 
     <color name="my_message_color">#69f0ae</color>
 
-    <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
 
 </resources>

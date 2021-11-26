@@ -22,6 +22,7 @@ import com.india.engaze.screens.HomePage.MainActivity.Companion.classId
 import com.india.engaze.screens.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_student_marks.*
 import kotlinx.android.synthetic.main.single_student_marks.view.*
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
 class StudentMarksActivity : BaseActivity() {
 
@@ -128,10 +129,10 @@ class StudentMarksActivity : BaseActivity() {
     }
 
     private fun initialize() {
-        title = "Marks"
+        toolbar_text.text = "Marks"
+        backButton.setOnClickListener { onBackPressed() }
         getCurrentDetails()
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         student_marks_list.setHasFixedSize(true)
         student_marks_list.layoutManager = LinearLayoutManager(this)
@@ -207,7 +208,6 @@ class StudentMarksActivity : BaseActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 student_marks_name.text = p0.child("name").value.toString()
-                student_marks_roll_number.text = p0.child("rollNumber").value.toString()
                 student_marks_main.visibility = View.VISIBLE
             }
         })

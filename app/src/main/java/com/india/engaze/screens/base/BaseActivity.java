@@ -28,7 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-
     }
 
     @Override

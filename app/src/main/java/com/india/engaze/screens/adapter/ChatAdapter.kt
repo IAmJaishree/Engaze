@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.btp.me.classroom.Class.ChatMessage
-import com.btp.me.classroom.Class.MessageType
-import com.btp.me.classroom.Class.MyColor
+import com.india.engaze.utils.ChatMessage
+import com.india.engaze.utils.MessageType
+import com.india.engaze.utils.MyColor
 import com.india.engaze.R
 
 class ChatAdapter(private val list: ArrayList<ChatMessage>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

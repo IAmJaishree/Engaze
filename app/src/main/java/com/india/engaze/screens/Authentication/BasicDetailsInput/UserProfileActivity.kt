@@ -20,10 +20,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.india.engaze.AppController
 import com.india.engaze.R
+import com.india.engaze.di.component.ActivityComponent
 import com.india.engaze.screens.base.BaseActivity
 import com.india.engaze.screens.slide.MyUploadingService
+import kotlinx.android.synthetic.main.activity_join_class_request.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
+import kotlinx.android.synthetic.main.toolbar_with_back.*
 
 import kotlin.collections.HashMap
 
@@ -38,6 +42,7 @@ class UserProfileActivity : BaseActivity() {
         setContentView(R.layout.activity_user_profile)
 
         initialize()
+
 
         user_profile_image.setOnClickListener {
             val gallaryIntent = Intent()
@@ -60,26 +65,36 @@ class UserProfileActivity : BaseActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
+    override fun showLoading() {
+        super.showLoading()
+        user_profile_progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        user_profile_progressBar.visibility = View.GONE
     }
 
     private fun initialize() {
-        title = "User Profile"
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        teacherCheckbox.setOnCheckedChangeListener { buttonView, _ ->
+            AppController.getInstance().getmSessionManager().isTeacher = (buttonView.isChecked)
+        }
 
-        user_profile_scroll_view.visibility = View.INVISIBLE
+        toolbar_text.text = "User Profile Details"
+        backButton.setOnClickListener{onBackPressed()}
+
+        user_profile_scroll_view.visibility = INVISIBLE
 
         mUserReference = FirebaseDatabase.getInstance().getReference("Users/${currentUser!!.uid}")
 
-        mUserReference.addListenerForSingleValueEvent(object : ValueEventListener {
+        mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                Log.d("chetan", "Register : $dataSnapshot")
+                hideLoading()
+
                 if (!dataSnapshot.exists()) {
-                    user_profile_progressBar.visibility = View.INVISIBLE
+                    user_profile_progressBar.visibility = INVISIBLE
                     user_profile_scroll_view.visibility = View.VISIBLE
                     return
                 }
@@ -87,7 +102,9 @@ class UserProfileActivity : BaseActivity() {
                 val name = dataSnapshot.child("name").value.toString()
                 val status = dataSnapshot.child("status").value.toString()
 
-
+                val thumbsImgUri = dataSnapshot.child("thumbImage").value?.toString()?: dataSnapshot.child("image").value.toString()
+                if(thumbsImgUri != "null")
+                    Glide.with(applicationContext).load(thumbsImgUri).into(user_profile_image)
 
                 user_profile_name.setText(name, TextView.BufferType.EDITABLE)
                 user_profile_status.setText(status, TextView.BufferType.EDITABLE)
@@ -98,34 +115,15 @@ class UserProfileActivity : BaseActivity() {
                 userMap["status"] = status
                 userMap["fcm-token"] = fcmToken
 
-                Log.d("chetan", "Registerk: $userMap")
-
                 user_profile_progressBar.visibility = INVISIBLE
                 user_profile_scroll_view.visibility = View.VISIBLE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                user_profile_progressBar.visibility = View.INVISIBLE
+                user_profile_progressBar.visibility = INVISIBLE
                 user_profile_scroll_view.visibility = View.VISIBLE
                 Toast.makeText(this@UserProfileActivity, "User_Profile Error : ${databaseError.message}", Toast.LENGTH_LONG).show()
                 Log.d("chetan", "error : ${databaseError.message}")
-            }
-        })
-
-        mUserReference.addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(databaseError: DatabaseError) {
-                user_profile_progressBar.visibility = View.INVISIBLE
-                user_profile_scroll_view.visibility = View.VISIBLE
-                Toast.makeText(this@UserProfileActivity, "User_Profile_1 Error : ${databaseError.message}", Toast.LENGTH_LONG).show()
-                Log.d("chetan", "error : ${databaseError.message}")
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d("chetan", "data imagge : $dataSnapshot")
-                val thumbsImgUri = dataSnapshot.child("thumbImage").value?.toString()?: dataSnapshot.child("image").value.toString()
-
-                if(thumbsImgUri != "null")
-                    Glide.with(applicationContext).load(thumbsImgUri).into(user_profile_image)
             }
         })
     }
@@ -140,7 +138,6 @@ class UserProfileActivity : BaseActivity() {
 
         mUserReference.updateChildren(userMap.toMap()).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-
                 setDisplayName(userMap["name"])
                 finish()
             } else {
@@ -175,6 +172,8 @@ class UserProfileActivity : BaseActivity() {
         uploadingIntent.action = MyUploadingService.ACTION_UPLOAD
         startService(uploadingIntent)
                 ?: Log.d("chetan", "At this this no activity is running")
+        showLoading()
+        showMessage("Image sent for uploading.")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

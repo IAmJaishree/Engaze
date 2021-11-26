@@ -119,10 +119,15 @@ public class ClassActivity extends BaseActivity implements ClassContract.View {
 
             String uid = AppController.getInstance().getFirebaseUser().getUid();
             for(DataSnapshot d : ds.child("members").getChildren()){
-                if(d.getKey().equals(uid)){
-                    isTeacher =  d.child("as").getValue().toString().equals("teacher");
+
+                if(d.child("as").getValue().toString().equals("teacher")){
+                    if(d.getKey().equals(uid)){
+                        isTeacher =  d.child("as").getValue().toString().equals("teacher");
+                    }
+                    teacherName.setText(d.child("name").getValue().toString());
                     break;
                 }
+
             }
 
             updatesLayout.removeAllViews();
